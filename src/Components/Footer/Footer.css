@@ -1,0 +1,65 @@
+.Footer {
+    background-color: #232323;
+    width: 100%;
+    padding: 5px 0px;
+    text-align: center;
+    font-family: UTMAvo;
+    color: #e7ca69;
+    font-size: 20px;
+}
+
+.Footer a {
+    text-decoration: none;
+    color: #e7ca69;
+}
+
+.footer-cinema-text {
+    color: #aca693;
+    padding-bottom: 20px;
+}
+
+.footer-main-container {
+    display: flex;
+    text-align: left;
+    padding: 0px 20%;
+}
+
+.Footer p {
+    height: 10px;
+}
+
+.footer-bold-header {
+    font-weight: bold;
+}
+
+.footer-social {
+    height: 35px;
+    padding: 2px 10px;
+}
+
+#footer-about-us {
+    width: 25%;
+}
+
+#footer-support {
+    width: 40%;
+}
+
+#footer-information {
+    width: 35%;
+}
+
+#footer-download {
+    text-align: center;
+    font-size: 25px;
+}
+
+#footer-download  img {
+    height: 28px;
+    padding: 2px 5px;
+}
+
+#footer-social-header {
+    height: 30px;
+    text-align: center;
+}

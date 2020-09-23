@@ -1,0 +1,94 @@
+.LandingPage {
+    margin: 10px 10% 10px 15%;
+    font-family: UTMAvo;
+}
+
+#slide-events {
+    margin: 10px 3% 30px 3%;
+    width: 90%;
+    height: 500px;
+}
+
+.slide-container {
+    height: 100%;
+}
+
+.image-container {
+    height: 500px;
+    border-radius: 20px;
+    background-color: red;
+}
+
+.movies-list {
+    display: flex;
+    max-width: 90%;
+    margin: 0px 5%;
+    overflow-x: scroll;
+    -webkit-user-drag: auto;
+}
+
+.movies-list::-webkit-scrollbar{
+    display: none;
+}
+
+.download-app {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0px;
+}
+
+.download-app-1 {
+    width: 15%;
+    padding: 10px;
+}
+
+.download-app-1 img {
+    width: 100%;
+}
+.download-app-2 {
+    padding: 10px 20px;
+    width: 40%;
+    font-size: 25px;
+    color: gray;
+}
+.download-app-3 {
+    padding: 0px 20px;
+    width: 30%;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
+.download-app-3 div:first-child {
+    font-size: 40px;
+}
+.download-app-3 div img {
+    height: 60px;
+}
+
+.aboutCine {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.aboutCineText {
+    padding-top: 30px;
+}
+
+.aboutCine img {
+    width: 400px;
+    padding: 0 30px;
+}
+
+.sponsor {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px 80px 0px;
+}
+
+.sponsor img {
+    height: 65px;
+    padding: 2px 20px;
+}

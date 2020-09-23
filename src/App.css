@@ -1,0 +1,32 @@
+@font-face {
+  font-family: UTMAvo;
+  src: url(./Fonts/UTM\ AVO.TTF);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: UTMAvo;
+  src: url(./Fonts/UTM\ AVOBOLD.TTF);
+  font-weight: bold;
+}
+
+.header-text {
+  text-decoration: none;
+  color: black;
+  border-bottom: 7px solid #ffdc6b;
+  font-family: UTMAvo;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 5px 20px;
+  width: fit-content;
+}
+
+.not-header-text {
+  text-decoration: none;
+  font-family: UTMAvo;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 5px 20px;
+  width: fit-content;
+  color: grey;
+}

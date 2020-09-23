@@ -1,0 +1,17 @@
+.movie-image {
+    width: 200px;
+    height: 270px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.movie-card {
+    padding: 10px 5px;
+    max-width: 200px;
+    min-width: 200px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    overflow: hidden;
+}
