@@ -3,7 +3,7 @@ import './LoginButton.css'
 
 class LoginButton extends Component {
     render() {
-        return (<a href="">ĐĂNG NHẬP</a>)
+        return (<a href="#">ĐĂNG KÍ</a>)
     }
 }
   

@@ -1,15 +1,15 @@
 .NavBar {
     height: 80px;
-    padding: 0 15%;
     display: flex;
 }
 
 .NavBarLogo {
-    width: 45%;
+    width: 25%;
+    margin: 0 0 0 15%;
 }
 
 .NavBarMainContainer {
-    width: 55%;
+    width: 50%;
 }
 #nav-list {
     width: 100%;
@@ -30,9 +30,10 @@
     font-size: 20px;
 }
 
-#loginButton{
+#nav-list #loginButton{
     background-color: #ffdc6b;
     border-radius: 20px;
+    padding: 5px 20px 8px 20px;
 }
 
 #logo {

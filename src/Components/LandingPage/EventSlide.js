@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'react-slideshow-image/dist/styles.css'
 
-class Event extends Component {
+class EventSlide extends Component {
     render() {
         return (
             <div className="each-fade">
@@ -13,4 +13,4 @@ class Event extends Component {
     }
 }
 
-export default Event
+export default EventSlide

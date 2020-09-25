@@ -1,17 +1,17 @@
 import React from 'react';
-import { Fade } from 'react-slideshow-image';
+import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import Event from './Event'
+import EventSlide from './EventSlide'
  
 const fadeImages = [  '1',  '2',  '3'];
-const Events = fadeImages.map(num => <Event number={num}/>)
+const EventsSlide = fadeImages.map(num => <EventSlide number={num}/>)
  
 const Slideshow = () => {
   return (
     <div className="slide-container">
-      <Fade>
-            {Events}
-      </Fade>
+      <Slide duration={5000} transitionDuration={800} >
+            {EventsSlide}
+      </Slide>
     </div>
   )
 }
