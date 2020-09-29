@@ -1,0 +1,35 @@
+.eventsPage {
+    display: flex;
+    margin: 0px 0 20px 18% ;
+}
+
+.eventsContainer {
+    width: 70%;
+}
+
+.eventCard {
+    width: 96%;
+    display: flex;
+    padding: 10px 2%;
+}
+
+.eventCard img {
+    width: 200px;
+    height: 150px;
+}
+
+.eventCardText {
+    width: 100%;
+    padding: 0px 10px;
+}
+
+.eventCard p {
+    width: fit-content;
+    height: 90px;
+}
+
+.eventCard a {
+    text-align: right;
+    text-decoration: none;
+    color: gray;
+}

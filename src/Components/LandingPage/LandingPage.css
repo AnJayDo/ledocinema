@@ -25,7 +25,7 @@
 .movies-list {
     display: flex;
     max-width: 90%;
-    margin: 0px 5%;
+    margin: 0px 3%;
     overflow-x: scroll;
     -webkit-user-drag: auto;
 }

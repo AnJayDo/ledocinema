@@ -10,9 +10,11 @@ class SideMoviesList extends Component {
     render() {
         const movies = this.state.movies.map(movie => <MovieCard movie={movie} />)
         return (
-            <div className="sideList">
-                <div><a href="#" className="header-text">Phim đang chiếu</a></div>
-                <div>{movies}</div>
+            <div style={{width: "30%", marginTop: '40px'}}>
+                <div>
+                    <a href="#" className="header-text">Phim đang chiếu</a>
+                </div>
+                <div className="sideList">{movies}</div>
             </div>
         )
     }

@@ -12,6 +12,7 @@ class NavBar extends Component {
             document.getElementById('signIn').style.display = "none"
             document.getElementById('signUp').style.display = "inline"
         }
+        
         return (
             <div className="NavBar">
                 <a className="NavBarLogo" href="/"><img id="logo" src={logo}/></a>

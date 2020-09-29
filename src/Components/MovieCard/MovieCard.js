@@ -7,7 +7,7 @@ class MovieCard extends Component {
             <a className="movie-card" href="#">
                 <div style={{backgroundImage: {}}} className="movie-image">
                 </div>
-                <span>{this.props.movie}</span>
+                {/* <span>{this.props.movie}</span> */}
             </a>
         )
     }
