@@ -22,7 +22,7 @@
     background: rgba(255, 200, 120, 0.6);
 }
 
-.movies-list {
+#movies-list {
     display: flex;
     max-width: 90%;
     margin: 0px 3%;
@@ -30,7 +30,7 @@
     -webkit-user-drag: auto;
 }
 
-.movies-list::-webkit-scrollbar{
+#movies-list::-webkit-scrollbar{
     display: none;
 }
 
@@ -69,7 +69,9 @@
 .download-app-3 div img {
     height: 60px;
 }
-
+#aboutLeDoCinema {
+    width: 90%;
+}
 .aboutCine {
     display: flex;
     justify-content: center;
@@ -83,6 +85,7 @@
 .aboutCine img {
     width: 400px;
     padding: 0 30px;
+    height: fit-content;
 }
 
 .sponsor {

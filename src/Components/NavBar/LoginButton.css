@@ -1,0 +1,9 @@
+#userButtonOnHover {
+    display: none;
+}
+
+#userButton:hover #userButtonOnHover {
+    display: inline;
+    padding: 10px;
+    border-radius: 5px;
+}
