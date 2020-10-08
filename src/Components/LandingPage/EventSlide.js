@@ -5,8 +5,8 @@ class EventSlide extends Component {
     render() {
         return (
             <div className="each-fade">
-                <a href={"#"}><div style={{backgroundImage: `${this.props.number}`}} className="image-container event">
-                    <h2>Slide {this.props.number}</h2>
+                <a href={`/events/${this.props.event.slug}`}><div style={{backgroundImage: `url(${this.props.event.image})`}} className="image-container event">
+                    <h2>Slide {this.props.event.name}</h2>
                 </div></a>
             </div>
         )

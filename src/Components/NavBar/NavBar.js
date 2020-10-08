@@ -4,22 +4,36 @@ import arrow from '../../Images/ArrowIcon.png'
 import './NavBar.css'
 import LoginButton from './LoginButton'
 import SignUpLogin from './SignUpLogin/SignUpLogin'
+import AvailableMovies from '../Movies/AvailableMovies';
+import NonAvailableMovies from '../Movies/NonAvailableMovies';
 
 class NavBar extends Component {
+    onMouseEnterPhimNav = () => {
+        document.getElementById('hoverPhim').style.display= 'inline'
+    }
+    onMouseLeavePhimNav = () => {
+        document.getElementById('hoverPhim').style.display= 'none'
+    }
     render() {
         return (
-            <div className="NavBar">
-                <a className="NavBarLogo" href="/"><img id="logo" src={logo}/></a>
+            <div onScroll={this.onMouseLeavePhimNav} className="NavBar">
+                <a onMouseEnter={this.onMouseLeavePhimNav} className="NavBarLogo" href="/"><img id="logo" src={logo}/></a>
                 <div className="NavBarMainContainer">
                     <ul id="nav-list">
-                        <li><a href="/">TRANG CHỦ</a></li>
-                        <li id="phim-nav"><a href="/movies">PHIM<img src={arrow}/></a></li>
-                        <li><a href="/events">SỰ KIỆN</a></li>
-                        <li><a href="/members">THÀNH VIÊN</a></li>
-                        <li id="loginButton"><LoginButton/></li>
+                        <li onMouseEnter={this.onMouseLeavePhimNav} ><a href="/">TRANG CHỦ</a></li>
+                        <li onMouseEnter={this.onMouseEnterPhimNav} id="phim-nav"><a href="/movies">PHIM<img src={arrow}/></a></li>
+                        <li onMouseEnter={this.onMouseLeavePhimNav} ><a href="/events">SỰ KIỆN</a></li>
+                        <li onMouseEnter={this.onMouseLeavePhimNav} ><a href="/members">THÀNH VIÊN</a></li>
+                        <li onMouseEnter={this.onMouseLeavePhimNav} id="loginButton"><LoginButton/></li>
                     </ul>
                 </div>
                 {<SignUpLogin />}
+                <div id="hoverPhim">
+                    <p className="header-text">Phim đang chiếu</p>
+                    <AvailableMovies/>
+                    <p className="header-text">Phim đang chiếu</p>
+                    <NonAvailableMovies/>
+                </div>
             </div>
           )
     }

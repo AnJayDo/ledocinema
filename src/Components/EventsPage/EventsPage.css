@@ -1,3 +1,8 @@
+h3 {
+    font-family: UTMAvo;
+    margin: 4px;
+}
+
 .eventsPage {
     display: flex;
     margin: 0px 0 20px 18% ;
@@ -25,11 +30,30 @@
 
 .eventCard p {
     width: fit-content;
+    overflow-y: hidden;
+    margin: 0;
     height: 90px;
 }
 
 .eventCard a {
-    text-align: right;
     text-decoration: none;
-    color: gray;
+    color: rgb(226, 196, 131);
+}
+
+.eventDetail {
+    padding: 30px 0;
+}
+
+.eventDetailHead {
+    display: flex;
+}
+
+.eventDetailHead img{
+    width: 150px;
+    height: 200px;
+}
+
+.eventName {
+    font-size: 30px;
+    color: rgb(226, 196, 131);
 }

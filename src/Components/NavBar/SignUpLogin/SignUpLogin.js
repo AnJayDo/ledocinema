@@ -44,7 +44,7 @@ function SignUpLogin() {
                     age: 0,
                     phonenumber: "",
                     username: "",
-                    passwork: password
+                    password: password
                 })
             })
             .then(res => res.json()).then(data => {

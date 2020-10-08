@@ -45,6 +45,18 @@
     padding: 0px 5px;
 }
 
+#hoverPhim {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;    
+    background-color: rgb(102, 102, 102);
+    margin: 80px 0;
+    width: 100%;
+    padding: 0 14% 100px 14%;
+}
+
 #phim-nav:hover img {
     transform: rotate(180deg);
     transition-duration: 0.3s;

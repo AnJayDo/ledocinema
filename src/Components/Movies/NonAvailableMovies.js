@@ -3,7 +3,7 @@ import MovieCard from '../MovieCard/MovieCard'
 import { Slide } from 'react-slideshow-image';
 import './movies.css'
 
-class AvailableMovies extends Component {
+class NonAvailableMovies extends Component {
     constructor(props) {
         super(props);
         this.state = {movies: []}
@@ -16,7 +16,7 @@ class AvailableMovies extends Component {
     }
 
     render() {
-        const movies = this.state.movies.slice(0,6).map( movie => <MovieCard movie={movie}/>)
+        const movies = this.state.movies.slice(6).map( movie => <MovieCard movie={movie}/>)
         return (
             <div className="available moviesList">
                 {/* <Slide> */}
@@ -27,4 +27,4 @@ class AvailableMovies extends Component {
     }
 }
 
-export default AvailableMovies;
+export default NonAvailableMovies;

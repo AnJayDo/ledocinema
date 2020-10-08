@@ -1,3 +1,22 @@
 .moviesList {
     display: flex;
+    /* overflow: scroll; */
+}
+
+.moviesPage {
+    width: 70%;
+    margin: 0 15%;
+    display: flex;
+}
+
+.rowMovies {
+    display: flex;
+}
+
+.movieDetail {
+    display: flex;
+}
+
+.movieHeadInfo {
+    display: flex;
 }

@@ -6,8 +6,14 @@ import Event from './Event'
 class EventsPage extends Component {
     constructor(props) {
         super(props);
-        this.state = { events: ["abc", "abc", "abc", "abc", "abc", "abc"] };
+        this.state = { events: [] };
     }
+    
+    componentDidMount() {
+        fetch('http://localhost:3000/event/all', {method: 'GET'}).then(res => res.json())
+          .then(data => this.setState({events:data}))
+    }
+
     render() {
         let eventList = this.state.events.map(event => <Event event={event} />)
         return (

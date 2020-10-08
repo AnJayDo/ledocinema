@@ -5,10 +5,17 @@ import './SideMovieList.css'
 class SideMoviesList extends Component {
     constructor(props) {
         super(props);
-        this.state = { movies: ["abc", "abc", "abc", "abc", "abc", "abc"] };
+        this.state = { movies: [] };
     }
+    
+    componentDidMount() {
+        fetch('http://localhost:3000')
+          .then(response => response.json())
+          .then(data => this.setState({ movies: data }))
+    }
+
     render() {
-        const movies = this.state.movies.map(movie => <MovieCard movie={movie} />)
+        const movies = this.state.movies.slice(0,3).map(movie => <MovieCard movie={movie} />)
         return (
             <div style={{width: "30%", marginTop: '40px'}}>
                 <div>

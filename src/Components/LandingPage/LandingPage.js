@@ -11,14 +11,27 @@ import appLeDoCinema from '../../Images/AppLeDoCinema.png'
 import getOnGooglePlay from '../../Images/GetGooglePlay.png'
 import downloadFromAppleStore from '../../Images/DownloadAppleStore.png'
 import AvailableMovies from '../Movies/AvailableMovies'
+import NonAvailableMovies from '../Movies/NonAvailableMovies'
 import SlideshowEvents from './SlideshowEvents'
+import AvailableEvents from './AvailableEvents'
+
 
 class LandingPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {movies: ["abc", "abc", "abc", "abc", "abc", "abc"]};
+        this.state = {movies: <AvailableMovies />}
+    }
+    clickAvailableMovies = () => {
+        document.getElementById("phimDangChieu").className="header-text"
+        document.getElementById("phimSapChieu").className="not-header-text"
+        this.setState({movies :  <AvailableMovies />})
     }
     
+    clickNonAvailableMovies = () => {
+        document.getElementById("phimSapChieu").className="header-text"
+        document.getElementById("phimDangChieu").className="not-header-text"
+        this.setState({movies :  <NonAvailableMovies />})
+    }
     render() {
         return (
             <div className="LandingPage">
@@ -26,9 +39,9 @@ class LandingPage extends Component {
                     <SlideshowEvents />
                 </div>
                 <div>
-                    <div style={{display: "flex"}}><a href="#" className="header-text">Phim đang chiếu</a><a href="#" className="not-header-text">Phim sắp chiếu</a></div>
+                    <div style={{display: "flex"}}><a href="#" id="phimDangChieu" onClick={this.clickAvailableMovies} className="header-text">Phim đang chiếu</a><a id="phimSapChieu" href="#" onClick={this.clickNonAvailableMovies} className="not-header-text">Phim sắp chiếu</a></div>
                     <div id="movies-list">
-                        <AvailableMovies />
+                        {this.state.movies}
                     </div>
                 </div>
                 <div className="download-app">
@@ -45,6 +58,10 @@ class LandingPage extends Component {
                         <div><a href="https://play.google.com/store"><img src={getOnGooglePlay}/></a></div>
                         <div><a href="https://www.apple.com/ios/app-store/"><img src={downloadFromAppleStore}/></a></div>
                     </div>
+                </div>
+                <div>
+                    <div><p className="header-text">Sự kiện đang diễn ra</p></div>
+                    <AvailableEvents />
                 </div>
                 <div id="aboutLeDoCinema">
                     <div><p className="header-text">Rạp phim Lê Độ</p></div>

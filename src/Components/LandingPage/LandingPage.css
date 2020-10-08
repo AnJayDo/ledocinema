@@ -16,7 +16,6 @@
 .image-container {
     height: 500px;
     border-radius: 20px;
-    background-color: rgb(209, 163, 63);
 }
 #slide-events .default-nav {
     background: rgba(255, 200, 120, 0.6);
