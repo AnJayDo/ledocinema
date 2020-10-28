@@ -68,6 +68,19 @@
 .download-app-3 div img {
     height: 60px;
 }
+
+#eventsContainer {
+    display: flex;
+    justify-content: center;
+    max-width: 95%;
+    overflow-x: scroll;
+    -webkit-user-drag: auto;
+}
+
+#eventsContainer::-webkit-scrollbar{
+    display: none;
+}
+
 #aboutLeDoCinema {
     width: 90%;
 }

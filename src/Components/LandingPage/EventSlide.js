@@ -6,7 +6,7 @@ class EventSlide extends Component {
         return (
             <div className="each-fade">
                 <a href={`/events/${this.props.event.slug}`}><div style={{backgroundImage: `url(${this.props.event.image})`}} className="image-container event">
-                    <h2>Slide {this.props.event.name}</h2>
+                    {/* <h2>{this.props.event.name}</h2> */}
                 </div></a>
             </div>
         )

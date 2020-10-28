@@ -1,0 +1,46 @@
+.userPage {
+    width: 70%;
+    margin: 50px 15% 150px 15%;
+}
+
+.tabUserPage {
+    display: flex;
+}
+
+.tabUserPage a {
+    text-decoration: none;
+}
+
+.userContainerDetail {
+    display: flex;
+}
+
+.avatarToChange {
+    padding: 30px 10px 0 10px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.thongtin {
+    font-size: 28px;
+    padding: 20px 20px 0px 20px;
+}
+
+.thongtin b {
+    width: 30%;
+}
+
+.thongtin input {
+    height: 40px;
+    font-size: 27px;
+    padding: 0 10px;
+}
+
+#khongtrungkhop {
+    display: none;
+    color: rgb(155, 13, 13);
+    font-family: UTMAvo;
+    font-weight: bold;
+    font-size: 25px;
+}

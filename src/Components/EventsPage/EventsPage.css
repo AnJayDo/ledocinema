@@ -19,8 +19,8 @@ h3 {
 }
 
 .eventCard img {
-    width: 200px;
-    height: 150px;
+    height: 190px;
+    width: auto;
 }
 
 .eventCardText {
@@ -49,8 +49,8 @@ h3 {
 }
 
 .eventDetailHead img{
-    width: 150px;
-    height: 200px;
+    height: 190px;
+    width: auto;
 }
 
 .eventName {

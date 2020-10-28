@@ -8,14 +8,14 @@
     "@testing-library/user-event": "^7.2.1",
     "js-cookie": "^2.2.1",
     "jwt-decode": "^3.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-slideshow-image": "^3.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=80 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

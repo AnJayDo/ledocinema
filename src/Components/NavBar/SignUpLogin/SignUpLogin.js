@@ -68,13 +68,15 @@ function SignUpLogin() {
             referrerPolicy: 'no-referrer', 
             body: JSON.stringify({
                 email: document.getElementById('emailLogin').value,
-                passwork: document.getElementById('passwordLogin').value
+                password: document.getElementById('passwordLogin').value
             })
         })
         .then(res => res.json()).then(data => {
             console.log(data)
-            Cookies.set('jwt', data.token , {expires: 30})
-            if(data.message == "login succes") { window.location.reload(false); }
+            if(data.message == "login succes") { 
+                Cookies.set('jwt', data.token , {expires: 30})
+                window.location.reload(false)
+            }
         }).catch(e => console.log(e))
     }
     // let isUsedUsername = () => {

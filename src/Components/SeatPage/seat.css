@@ -1,0 +1,47 @@
+.rowSeat {
+    display: flex;
+}
+
+.seat {
+    background-image: url('./167947-200.png');
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    margin: 0 1px;
+}
+
+.selectedSeat {
+    background-image: url('./167947-202.png');
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    margin: 0 1px;
+}
+
+.seatUnavailable {
+    background-image: url('./167947-201.png');
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    margin: 0 1px;
+}
+
+.seatContainer {
+    padding: 1px;
+    border-radius: 10px;
+}

@@ -2,8 +2,11 @@
     display: none;
 }
 
+#userButtonOnHover a {
+    font-weight: normal;
+}
+
 #userButton:hover #userButtonOnHover {
     display: inline;
-    padding: 10px;
     border-radius: 5px;
 }

@@ -31,7 +31,7 @@ class NavBar extends Component {
                 <div id="hoverPhim">
                     <p className="header-text">Phim đang chiếu</p>
                     <AvailableMovies/>
-                    <p className="header-text">Phim đang chiếu</p>
+                    <p className="header-text">Phim sắp chiếu</p>
                     <NonAvailableMovies/>
                 </div>
             </div>

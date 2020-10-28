@@ -5,7 +5,7 @@ class MovieCard extends Component {
     render() {
         return(
             <a className="movie-card" href={`/movies/${this.props.movie.slug}`}>
-                <div style={{backgroundImage: `url("https://lichchieu.vn/uploads/movie/poster/160/thumb_gemini_man_intl_tsr_1-sht_27x40_eng_1_.jpg")`}} className="movie-image">
+                <div style={{backgroundImage: `url("${this.props.movie.image}")`}} className="movie-image">
                 </div>
                 <span>{this.props.movie.name}</span>
             </a>

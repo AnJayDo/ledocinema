@@ -10,6 +10,14 @@
   font-weight: bold;
 }
 
+*{
+  font-family: UTMAvo;
+}
+
+.button i {
+  font-weight: 600;
+}
+
 .header-text {
   text-decoration: none;
   color: black;
@@ -29,4 +37,20 @@
   padding: 5px 20px;
   width: fit-content;
   color: grey;
+}
+
+.button {
+  text-align: center;
+  background: linear-gradient(to bottom right, #ffd752, #fa7538);
+  border: none;
+  font-family: 'UTMAvo';
+  margin-top: 30px;
+  padding: 8px 20px 13px 20px;
+  font-size: 25px;
+  width: fit-content;
+  margin-right: 2%;
+  margin-left: 2%;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
 }

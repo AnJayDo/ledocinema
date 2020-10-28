@@ -31,9 +31,10 @@
 }
 
 #nav-list #loginButton{
-    background-color: #ffdc6b;
+    z-index: 5;
     border-radius: 20px;
-    padding: 5px 20px 8px 20px;
+    background-color: #ffdc6b;
+    text-align: center;
 }
 
 #logo {
@@ -48,16 +49,28 @@
 #hoverPhim {
     position: fixed;
     display: none;
-    justify-content: center;
-    align-items: center;
     z-index: 500;    
-    background-color: rgb(102, 102, 102);
+    background-color: rgba(245, 245, 245);
     margin: 80px 0;
-    width: 100%;
-    padding: 0 14% 100px 14%;
+    width: 68%;
+    padding: 0 16% 100px 16%;
+}
+
+#hoverPhim .header-text {
+    color: #fa9e49;
 }
 
 #phim-nav:hover img {
     transform: rotate(180deg);
     transition-duration: 0.3s;
+}
+
+#loginButton div div {
+    margin: 4px 0px;
+}
+
+#userHi {
+    display: flex; 
+    background-color: #ffdc6b;
+    border-radius: 20px;
 }

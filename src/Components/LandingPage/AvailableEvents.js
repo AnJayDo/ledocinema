@@ -12,10 +12,9 @@ class AvailableEvents extends Component {
     }
 
     render() {
-        console.log(this.state.events)
-        let eventList = this.state.events.map(event => <a href={`/events/${event.slug}`}><img width="250px" src={event.image}/></a>)
+        let eventList = this.state.events.map(event => <a style={{padding: '0 2px'}} href={`/events/${event.slug}`}><img style={{width:"250px", borderRadius:'5px'}} src={event.image}/></a>)
         return (
-            <div style={{display: 'flex', width: '90%', justifyContent: 'center', overflow: 'scroll'}} className="availableEvents">
+            <div id='eventsContainer' >
                 {eventList}
             </div>
         )

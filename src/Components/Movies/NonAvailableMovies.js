@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MovieCard from '../MovieCard/MovieCard'
-import { Slide } from 'react-slideshow-image';
 import './movies.css'
 
 class NonAvailableMovies extends Component {
@@ -16,7 +15,7 @@ class NonAvailableMovies extends Component {
     }
 
     render() {
-        const movies = this.state.movies.slice(6).map( movie => <MovieCard movie={movie}/>)
+        const movies = this.state.movies.slice(6,12).map( movie => <MovieCard movie={movie}/>)
         return (
             <div className="available moviesList">
                 {/* <Slide> */}
