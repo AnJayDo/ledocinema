@@ -11,6 +11,10 @@ import MemberPage from './Components/MemberPage/MemberPage'
 import UserPage from './Components/UserPage/UserPage'
 import SeatPage from './Components/SeatPage/SeatPage'
 import successChangePage from './Components/UserPage/successChangePassword'
+import ErrorPage from './Components/errorPage'
+import PhimAdminLogin from './Components/AdminPage/AdminContain/AdminPhim/adminPhim'
+import AdminLogin from './Components/AdminPage/AdminContain/AdminPage'
+import EditPhimAdmin from './Components/AdminPage/AdminContain/AdminPhim/EditMovieDetail'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
@@ -38,6 +42,10 @@ function App() {
           <Route path="/user" component={UserPage}></Route>
           <Route path="/successChange" component={successChangePage}></Route>
           <Route path="/logout"></Route>
+          <Route path="/administrator" exact component={AdminLogin}></Route>
+          <Route path="/administrator/phim/:movie" component={EditPhimAdmin}></Route>
+          <Route path="/administrator/phim" component={PhimAdminLogin}></Route>
+          <Route path="*" component={ErrorPage}></Route>
         </Switch>
         <Footer />
       </div>

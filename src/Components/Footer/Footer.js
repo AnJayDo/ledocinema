@@ -8,7 +8,7 @@ import TwitterFooterIcon from '../../Images/Twitter-Footer-Icon.png'
 import YouTubeFooterIcon from '../../Images/YouTube-Footer-Icon.png'
 function Footer() {
     return (
-        <div className="Footer">
+        <div className="Footer" id="footer">
             <div>
                 <div className="footer-main-container">
                     <div id="footer-about-us">

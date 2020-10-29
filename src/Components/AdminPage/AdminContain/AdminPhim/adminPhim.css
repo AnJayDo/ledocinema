@@ -1,0 +1,98 @@
+a {
+  text-decoration: none;
+}
+
+.adminMainContainer {
+  width: 100%;
+}
+
+.topPhimAdmin {
+  width: 100%;
+  display: flex;
+}
+
+.topPhimAdmin a {
+  width: 15%;
+  margin-left: 65%;
+}
+
+.movieComponent {
+  width: 90%;
+  margin: 10px 5%;
+  display: flex;
+  box-shadow: 3px 3px 3px 2px #888888;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.movieImage {
+  height: 200px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.movieButtons {
+    margin-top: 30px;
+}
+
+.toggleContainer {
+  font-size: 20px;
+}
+
+.movieInfo {
+    width: 70%;
+    margin: 0 20px;
+}
+
+.movieName{
+    margin: 2px;
+    color:  #ffd752;
+}
+
+.movieInfo p {
+    margin: 2px;
+}
+
+.movieComponentButton {
+  text-align: center;
+  border: none;
+  font-family: "UTMAvo";
+  margin-top: 10px;
+  padding: 3px 20px 8px 20px;
+  font-size: 20px;
+  width: 130px;
+  margin-right: 2%;
+  margin-left: 2%;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+}
+
+
+.formEdit {
+    font-size: 20px;
+}
+
+.formEdit div {
+    margin: 4px;
+}
+
+.formEdit label {
+    display: block;
+}
+
+.formEdit input{
+    height: 26px;
+    width: 50%;
+    font-size: 20px;
+    padding: 5px;
+    overflow: visible;
+}
+
+.formEdit textarea{
+    height: 26px;
+    width: 50%;
+    font-size: 20px;
+    padding: 5px;
+    overflow: visible;
+}

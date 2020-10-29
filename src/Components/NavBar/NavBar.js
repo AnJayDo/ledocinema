@@ -16,7 +16,7 @@ class NavBar extends Component {
     }
     render() {
         return (
-            <div onScroll={this.onMouseLeavePhimNav} className="NavBar">
+            <div onScroll={this.onMouseLeavePhimNav} className="NavBar" id="navbar">
                 <a onMouseEnter={this.onMouseLeavePhimNav} className="NavBarLogo" href="/"><img id="logo" src={logo}/></a>
                 <div className="NavBarMainContainer">
                     <ul id="nav-list">

@@ -1,0 +1,30 @@
+.adminPage {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  font-weight: bold;
+}
+
+.adminMainContainer {
+    overflow-y: scroll;
+}
+
+.adminMainContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.adminMainContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.adminMainContainer::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.adminMainContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

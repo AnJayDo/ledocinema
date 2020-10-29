@@ -9,10 +9,13 @@
     "js-cookie": "^2.2.1",
     "jwt-decode": "^3.0.0",
     "react": "^16.14.0",
+    "react-datepicker": "^3.3.0",
+    "react-datetime-picker": "^3.0.4",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-slideshow-image": "^3.3.0"
+    "react-slideshow-image": "^3.3.0",
+    "react-toggle": "^4.1.1"
   },
   "scripts": {
     "start": "set PORT=80 && react-scripts start",

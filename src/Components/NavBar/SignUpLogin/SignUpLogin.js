@@ -48,7 +48,6 @@ function SignUpLogin() {
                 })
             })
             .then(res => res.json()).then(data => {
-                console.log(data)
                 if(data.message == "đăng kí thành công") 
                     window.location="/" 
             }).catch(e => console.log(e))
