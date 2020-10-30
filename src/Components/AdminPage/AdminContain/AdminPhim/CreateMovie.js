@@ -9,29 +9,29 @@ import Datepicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
 
-class EditMovieDetail extends Component {
+class CreateMovie extends Component {
     constructor(props) {
         super(props)
-        this.state = { movie: {} }
-        this.onClickEditButton = this.onClickEditButton.bind(this)
+        this.onClickTaoPhim = this.onClickTaoPhim.bind(this)
     }
+
+    state = { movie: {}, date: new Date() , image: {}}
 
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
         document.getElementById('footer').style.display = 'none'
-        fetch(`http://localhost:3000/movie/${this.props.match.params.movie}`)
+        fetch(`http://localhost:3000/movie/cuc-no-hoa-cuc-cung`)
           .then(response => response.json())
           .then(data => 
             {     
                 fetch(`http://localhost:3000/movietime/${data._id}`)
                 .then(response => response.json())
                 .then(res => {
-                    this.setState({ movie: data, date: new Date(data.date_start?data.date_start:null), movietimes:res, times: res[0]?res[0].movietime.times:[]})
+                    this.setState({ movie: data, date: new Date(), image: {}})
                 })
             })
     }
 
-    
     onChangeImage(element) {
         let files = element.target.files
         let reader = new FileReader()
@@ -43,25 +43,25 @@ class EditMovieDetail extends Component {
         }
     }
 
-    onClickEditButton() {
+    onClickTaoPhim() {
         const formData = new FormData()
         if(this.state.image)
             formData.append('image', this.state.image, this.state.image.name)
-        formData.append('name', document.getElementById("movieName").value==""?this.state.movie.name:document.getElementById("movieName").value)
-        formData.append('decription', document.getElementById("description").value==""?this.state.movie.decription:document.getElementById("description").value)
-        formData.append('director', document.getElementById("director").value==""?this.state.movie.director:document.getElementById("director").value)
-        formData.append('actor', document.getElementById("actors").value==""?this.state.movie.actor:document.getElementById("actors").value)
-        formData.append('type', document.getElementById("type").value==""?this.state.movie.type:document.getElementById("type").value)
-        formData.append('length', document.getElementById("length").value==""?this.state.movie.length:document.getElementById("length").value)
-        formData.append('language', document.getElementById("language").value==""?this.state.movie.language:document.getElementById("language").value)
-        formData.append('rating', document.getElementById("rating").value==""?this.state.movie.rating:document.getElementById("rating").value)
+        formData.append('name', document.getElementById("movieName").value)
+        formData.append('decription', document.getElementById("description").value)
+        formData.append('director', document.getElementById("director").value)
+        formData.append('actor', document.getElementById("actors").value)
+        formData.append('type', document.getElementById("type").value)
+        formData.append('length', document.getElementById("length").value)
+        formData.append('language', document.getElementById("language").value)
+        formData.append('rating', document.getElementById("rating").value)
+        formData.append('playing', false)
         formData.append('date', {date_start: new Date(), date_end: null})
-        formData.append('slug', document.getElementById("shortlink").value==""?this.state.movie.slug:document.getElementById("shortlink").value)
-        fetch(`http://localhost:3000/movie/${this.state.movie._id}`, {
-            method: 'PUT',
+        formData.append('slug', document.getElementById("shortlink").value)
+        fetch('http://localhost:3000/movie/create', {
+            method: 'POST',
             body: formData
-        })
-        .then(e => window.location.href=window.location.origin+"/administrator/phim")
+        }).then(e => window.location.href=window.location.origin+"/administrator/phim")
     }
 
     render() {
@@ -72,17 +72,13 @@ class EditMovieDetail extends Component {
                     <AdminNav />
                     <div style={{maxHeight: window.innerHeight}} className="adminMainContainer">
                         <div className="topPhimAdmin">
-                            <p className="header-text">{this.state.movie.name}</p>
+                            <p className="header-text">Tạo phim mới</p>
                         </div>
                         <div>
-                            <MovieComponent movie={this.state.movie}/>
-                        </div>
-                        <div>
-                            <p className="header-text">Thông tin chỉnh sửa</p>
                             <form className="formEdit">
                                 <div>
                                     <label for="movieName"><b>Hình:</b></label>
-                                    <input type="file"  name="image" id="image" onChange={(element) => this.onChangeImage(element)} required></input>
+                                    <input type="file" name="image" id="image" onChange={(element) => this.onChangeImage(element)} required></input>
                                 </div>
                                 <div>
                                     <label for="movieName"><b>Tên phim:</b></label>
@@ -118,6 +114,7 @@ class EditMovieDetail extends Component {
                                         onChange={(value) => this.setState({movie: this.state.movie, 
                                             date: value, movietimes: this.state.movietimes, times: this.state.times})}
                                         dateFormat="dd/MM/yyyy"
+                                        minDate={new Date()}
                                         selected={this.state.date}
                                     />
                                 </div>
@@ -130,12 +127,12 @@ class EditMovieDetail extends Component {
                                     <input type="text" placeholder={this.state.movie.trailer} name="linkTrailer" id="linkTrailer" required></input>
                                 </div>
                                 <div>
-                                    <label for="shortlink"><b>Shortlink phim: </b></label>
+                                    <label for="shortlink"><b>Đặt shortlink cho phim: </b></label>
                                     <input type="text" placeholder={this.state.movie.slug} name="shortlink" id="shortlink" required></input>
                                 </div>
                             </form>
                         </div>
-                        <a onClick={this.onClickEditButton} href="#"><div className="button dangsua">Đăng sửa</div></a>
+                        <a href="#" onClick={this.onClickTaoPhim}><div className="button dangsua">Tạo phim</div></a>
                     </div>
                 </div>
             )
@@ -145,4 +142,4 @@ class EditMovieDetail extends Component {
     }
 }
 
-export default EditMovieDetail
+export default CreateMovie

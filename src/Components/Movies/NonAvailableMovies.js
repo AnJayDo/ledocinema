@@ -15,7 +15,7 @@ class NonAvailableMovies extends Component {
     }
 
     render() {
-        const movies = this.state.movies.slice(6,12).map( movie => <MovieCard movie={movie}/>)
+        const movies = this.state.movies.filter(e => e.playing==false).map( movie => <MovieCard movie={movie}/>)
         return (
             <div className="available moviesList">
                 {/* <Slide> */}

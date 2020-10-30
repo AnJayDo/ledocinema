@@ -16,7 +16,7 @@ class AvailableMovies extends Component {
     }
 
     render() {
-        const movies = this.state.movies.slice(0,6).map( movie => <MovieCard movie={movie}/>)
+        const movies = this.state.movies.filter(e => e.playing==true).map( movie => <MovieCard movie={movie}/>)
         return (
             <div className="available moviesList">
                 {/* <Slide> */}

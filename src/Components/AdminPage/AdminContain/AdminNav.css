@@ -5,23 +5,23 @@
     padding: 5% 0;
 }
 
-ul{
+.adminNav ul{
     list-style: none;
     margin: 50px 0;
     padding: 0;
 }
 
-ul li a{
+.adminNav ul li a{
     text-decoration: none;
     color: black;
     font-size: 24px;
 }
 
-ul li {
+.adminNav ul li {
     padding: 5px 0 12px 0;
 }
 
-ul li:hover {
+.adminNav ul li:hover {
     background-color: burlywood;
     border-radius: 0px 50px 50px 0px;
 }
