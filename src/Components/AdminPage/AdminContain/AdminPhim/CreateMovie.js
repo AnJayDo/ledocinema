@@ -45,7 +45,7 @@ class CreateMovie extends Component {
 
     onClickTaoPhim() {
         const formData = new FormData()
-        if(this.state.image)
+        //if(this.state.image)
             formData.append('image', this.state.image, this.state.image.name)
         formData.append('name', document.getElementById("movieName").value)
         formData.append('decription', document.getElementById("description").value)
