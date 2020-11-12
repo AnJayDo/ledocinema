@@ -53,7 +53,7 @@ class MovieDetail extends Component {
         const startDate = new Date(this.state.movie.date_start)
         const img = this.state.movie.image
         let trailer = new String(this.state.movie.trailer)
-        let suatchieu = this.state.movietimes.map(mvt => {
+        let suatchieu = this.state.movietimes.filter(element => (new Date(element.movietime.date))<(new Date())).slice(0,7).map(mvt => {
             const date = new Date(mvt.movietime.date)
             return(<div className="ngayChieuPhim" id={mvt._id} onClick={() => this.updateTime(mvt._id)}>{date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()}</div>)
         })
@@ -62,7 +62,7 @@ class MovieDetail extends Component {
         trailer = trailer.slice(trailer.search('embed/')+6).slice(0,trailer.slice(trailer.search('embed/')+6).search('"'))
         return (
             <div className="movieDetail">
-                <div style={{paddingRight: '50px'}}>
+                <div style={{marginRight: '8%', width: "60%"}}>
                     <div className="movieHeadInfo">
                         <img src={img}/>
                         <div className="movieHeadText">

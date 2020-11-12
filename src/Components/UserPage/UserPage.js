@@ -1,14 +1,43 @@
 import React, { Component } from 'react';
 import './UserPage.css'
 import Cookies from 'js-cookie'
+import ReactDOM from 'react-dom'
+import Notify from '../Notify/Notify'
 
 const encodeToken = Cookies.get('jwt')
+const link = "http://localhost:3000/"
 
 class UserPage extends Component {
     constructor(props) {
         super(props);
-        this.state = { data: [], history: []};
+        this.state = { data: [], history: [], image: {}};
     }
+
+    onChangeImage(element) {
+        let files = element.target.files
+        let reader = new FileReader()
+        reader.readAsDataURL(files[0])
+        reader.onload = (element) => {
+            console.warn(element.target.result)
+            console.log(files[0])                
+            const formData = new FormData()
+            //if(this.state.image)
+                formData.append('avartar', files[0], files[0].name)
+            fetch('http://localhost:3000/account/avartar', {
+                method: 'PUT',
+                headers: {
+                    'auth-token': encodeToken
+                },
+                body: formData
+            }).then(res => res.json()).then(data => {
+                if(data.message=="Đã cập nhập ảnh đại diện") {
+                    this.setState({ data: this.state.data, history: this.state.history , image:link+"src/resoures/"+files[0].name})
+                    ReactDOM.render(<Notify message={data.message} />, document.getElementById('notify'));
+                }
+            }).catch(e => console.log(e))
+        }
+    }
+
 
     componentDidMount() {
         fetch('http://localhost:3000/account/me', {
@@ -25,7 +54,9 @@ class UserPage extends Component {
                     'auth-token': encodeToken
                 }
             }).then(res => res.json()).then(res => {
-                this.setState({ data: data, history: res })
+                let image = data.avartar
+                if(String(image).indexOf("http")<0) image=link+image
+                this.setState({ data: data, history: res, image: image })
             })
         })
         if (window.location.href.slice(window.location.origin.length) == "/user#changePassword") {
@@ -73,7 +104,9 @@ class UserPage extends Component {
         else if(document.getElementById("matkhaumoi").value==document.getElementById("nhaplaimatkhau").value) 
             document.getElementById("khongtrungkhop").style.display="none"
     }
-
+    onClickAvatar() {
+        document.getElementById("image").click()
+    }
     render() {
         return (
             <div className="userPage">
@@ -86,10 +119,9 @@ class UserPage extends Component {
                 </div>
                 <div id="userTab0"  className="userContainerDetail">
                     <div style={{ textAlign: "center" }}>
-                        {/* <input type="file" name="avatar"> */}
-                        <img className="avatarToChange" src={"https://c7.uihere.com/files/348/800/890/computer-icons-avatar-user-login-avatar-thumb.jpg"} />
-                        <div className="button">Thay ảnh đại diện</div>
-                        {/* </input> */}
+                        <img id="avatarToChange" className="avatarToChange" src={this.state.image} />
+                        <input style={{display: "none"}} type="file" name="image" id="image" onChange={(element) => this.onChangeImage(element)}></input>
+                        <div style={{ marginLeft: "30px" }} onClick={this.onClickAvatar} className="button">Thay ảnh đại diện</div>
                     </div>
                     <div style={{ width: "100%" }} className="thongtinchitiet">
                         <div className="thongtin"><b>Tên khách hàng:</b> {this.state.data.name}</div>
@@ -101,7 +133,7 @@ class UserPage extends Component {
                     {/* </form> */}
                 </div>
                 <div style={{ display: "none" }} id="userTab" className="userContainerDetail">
-                    <div style={{ width: "100%" }} className="thongtinchitiet">
+                    <div style={{ width: "100%", marginBottom: '280px' }} className="thongtinchitiet">
                         <form>
                             <div id="khongtrungkhop">Mật khẩu mới và mật khẩu nhập lại không trùng khớp</div>
                             <div className="thongtin"><b>Mật khẩu cũ:</b> <input type="password" id="matkhaucu"/></div>

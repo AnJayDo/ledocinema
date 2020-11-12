@@ -15,8 +15,8 @@
 
 .movieDetail {
     display: flex;
-    width: 65%;
-    margin: 20px 0 20px 16%;
+    width: 84%;
+    margin: 20px 0 100px 16%;
 }
 
 .movieHeadInfo {
@@ -40,14 +40,30 @@
 .suatchieu {
     width: 90%;
     min-height: 200px;
+    max-width: 1000px;
     background-color: rgb(199, 199, 199);
     border-radius: 20px;
     padding: 10px 20px;
 }
 
 .ngay-chieu {
+    overflow-x: scroll;
     padding: 10px;
     display: flex;
+}
+
+.ngay-chieu::-webkit-scrollbar {
+  height: 5px;
+}
+.ngay-chieu::-webkit-scrollbar-track {
+  background: none; 
+}
+.ngay-chieu::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 3px;
+}
+.ngay-chieu::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 .ngayChieuPhim {

@@ -282,11 +282,11 @@ function SignUpLogin() {
                 </form>
                 <button type="submit" onClick={showSignIn}>Đăng nhập</button>
                 <button type="submit" onClick={postSignUp}>Đăng kí</button>
-                <div style={{ fontSize: "26px", marginTop: "20px" }}>Đăng nhập bằng
-                    <img style={{ height: "30px", width: "30px", marginRight: "10px", marginLeft: "10px" }} onClick={showSignIn} src="https://img.icons8.com/plasticine/2x/google-logo.png" ></img>
+                <a href="#" style={{color: "black"}} onClick={showSignIn}><div style={{ fontSize: "26px", marginTop: "20px" }}>Đăng nhập bằng
+                    <img style={{ height: "30px", width: "30px", marginRight: "10px", marginLeft: "10px" }} src="https://img.icons8.com/plasticine/2x/google-logo.png" ></img>
                      or
-                    <img style={{ height: "30px", width: "30px", marginRight: "10px", marginLeft: "10px" }} onClick={showSignIn} src="https://cdn.iconscout.com/icon/free/png-256/facebook-logo-2019-1597680-1350125.png" ></img>
-                </div>
+                    <img style={{ height: "30px", width: "30px", marginRight: "10px", marginLeft: "10px" }} src="https://cdn.iconscout.com/icon/free/png-256/facebook-logo-2019-1597680-1350125.png" ></img>
+                </div></a>
             </div>
             <div className="SignUp animate__animated animate__fadeIn" id="signIn" style={{ display: "none" }}>
                 <h1>Đăng nhập</h1>

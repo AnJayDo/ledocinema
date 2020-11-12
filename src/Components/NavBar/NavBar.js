@@ -28,6 +28,7 @@ class NavBar extends Component {
                     </ul>
                 </div>
                 {<SignUpLogin />}
+                <div id="notify"></div>
                 <div id="hoverPhim">
                     <p className="header-text">Phim đang chiếu</p>
                     <AvailableMovies/>

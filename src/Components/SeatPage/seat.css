@@ -1,3 +1,16 @@
+.seatPage {
+    display: flex;
+    width: 100%;
+    margin: 20px 0 20px 16%;
+}
+
+.seats {
+    padding: 50px;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px #bfbfbf;
+}
+
 .rowSeat {
     display: flex;
 }
@@ -8,7 +21,7 @@
     height: 60px;
     background-size: cover;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     line-height: 40px;
     text-align: center;
@@ -34,7 +47,7 @@
     height: 60px;
     background-size: cover;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     line-height: 40px;
     text-align: center;
@@ -44,4 +57,29 @@
 .seatContainer {
     padding: 1px;
     border-radius: 10px;
+}
+
+.movieHeadInfo {
+    display: flex;
+}
+
+.movieHeadInfo img {
+    width: inherit;    
+    max-height: 200px;
+}
+
+.phuongThucThanhToan {
+    display: none;
+    padding: 20px;
+    width: 100%;
+}
+
+.hinhThucThanhToan {
+    text-align: center;
+    padding: 5px 5px 9px 5px;
+    width: 70%;
+    margin: 10px;
+    border-radius: 7px;
+    font-weight: bold;
+    color: white;
 }

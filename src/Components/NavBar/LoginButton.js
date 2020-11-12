@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import './LoginButton.css'
 
 const encodeToken = Cookies.get('jwt')
+const link = "http://localhost:3000/"
 
 class LoginButton extends Component {
     constructor(props) {
@@ -41,10 +42,11 @@ class LoginButton extends Component {
     render() {
         const {data} = this.state
         if(data.name) {
-            const link = "https://c7.uihere.com/files/348/800/890/computer-icons-avatar-user-login-avatar-thumb.jpg"
+            let image = this.state.data.avartar
+            if(String(image).indexOf("http")<0) image=link+image
             return (
                 <div id="userButton">
-                    <a id="userHi" href="/user"><img style={{ borderRadius: '15px', height: '30px', width: '30px', padding: '3px' }} src={link} /><p style={{ margin: '3px' }}>{"Chào " + String(data.name).slice(String(data.name).lastIndexOf(" ") + 1)}</p></a>
+                    <a id="userHi" href="/user"><img style={{ borderRadius: '15px', height: '30px', width: '30px', padding: '3px' }} src={image} /><p style={{ margin: '3px' }}>{"Chào " + String(data.name).slice(String(data.name).lastIndexOf(" ") + 1)}</p></a>
                     <div id="userButtonOnHover">
                         <div><a href="/user">Thông tin</a></div>
                         <div><a href="/user#changePassword">Đổi mật khẩu</a></div>
