@@ -27,6 +27,7 @@ a {
 
 .movieImage {
   height: 200px;
+  width: 160px;
   margin: 10px;
   border-radius: 10px;
 }
@@ -95,4 +96,9 @@ a {
     font-size: 20px;
     padding: 5px;
     overflow: visible;
+}
+
+.quill {
+  width: 50%;
+  font-weight: normal;
 }

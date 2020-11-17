@@ -2,7 +2,7 @@
     width: 15%;
     text-align: center;
     height: 90%;
-    padding: 5% 0;
+    padding: 5% 30px 0% 0px;
 }
 
 .adminNav ul{
@@ -13,8 +13,10 @@
 
 .adminNav ul li a{
     text-decoration: none;
-    color: black;
+    color: rgb(143, 143, 143);
     font-size: 24px;
+    width: 60%;
+    display: inline-grid;
 }
 
 .adminNav ul li {
@@ -22,6 +24,32 @@
 }
 
 .adminNav ul li:hover {
-    background-color: burlywood;
     border-radius: 0px 50px 50px 0px;
+}
+
+.adminNav ul li i {
+    font-size: 27px;
+    width: 30%;
+    color: rgb(143, 143, 143);
+}
+
+.adminNav ul li:hover a {
+    color: black;
+}
+
+.adminNav ul li:hover i {
+    color: black;
+}
+
+.usingTab {
+    border-left: 8px solid;
+    border-image: linear-gradient(180deg, rgb(255 143 77), rgb(250,224,66)) 1;
+    background: -webkit-linear-gradient(rgb(255 143 77), rgb(250,224,66));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#logoToClick {
+    display: block;
+    height: 150px;
 }

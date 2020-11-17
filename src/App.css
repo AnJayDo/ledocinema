@@ -53,19 +53,7 @@
   border-radius: 12px;
   color: white;
   font-weight: bold;
+  cursor: pointer;
 }
 
-::-webkit-scrollbar {
-  height: 5px;
-  width: 3px;
-}
-::-webkit-scrollbar-track {
-  background: none; 
-}
-::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
+

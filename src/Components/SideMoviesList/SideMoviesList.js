@@ -17,7 +17,7 @@ class SideMoviesList extends Component {
     render() {
         const movies = this.state.movies.slice(0,3).map(movie => <MovieCard movie={movie} />)
         return (
-            <div style={{width: "30%", marginTop: '40px'}}>
+            <div style={{width: "20%", marginTop: '40px'}}>
                 <div>
                     <a href="#" className="header-text">Phim đang chiếu</a>
                 </div>

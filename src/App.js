@@ -18,6 +18,7 @@ import EditPhimAdmin from './Components/AdminPage/AdminContain/AdminPhim/EditMov
 import CreateMovie from './Components/AdminPage/AdminContain/AdminPhim/CreateMovie'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 function App() {
   document.onscroll = () => {
@@ -49,6 +50,10 @@ function App() {
           <Route path="/administrator/phim" component={PhimAdminLogin}></Route>
           <Route path="*" component={ErrorPage}></Route>
         </Switch>
+        <MessengerCustomerChat
+          pageId="110394880858712"
+          appId="1936758909798403"
+        />
         <Footer />
       </div>
     </Router>

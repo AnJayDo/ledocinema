@@ -7,13 +7,16 @@ import AdminNav from '../AdminNav'
 import './adminPhim.css'
 import Datepicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
 class EditMovieDetail extends Component {
     constructor(props) {
         super(props)
-        this.state = { movie: {} }
+        this.state =  { movie: {}, date: new Date() , image: {}, text: ""}
         this.onClickEditButton = this.onClickEditButton.bind(this)
+        this.handleChangeText = this.handleChangeText.bind(this)
     }
 
     componentDidMount() {
@@ -26,7 +29,7 @@ class EditMovieDetail extends Component {
                 fetch(`http://localhost:3000/movietime/${data._id}`)
                 .then(response => response.json())
                 .then(res => {
-                    this.setState({ movie: data, date: new Date(data.date_start?data.date_start:null), movietimes:res, times: res[0]?res[0].movietime.times:[]})
+                    this.setState({ movie: data, date: new Date(data.date_start?data.date_start:null), movietimes:res, times: res[0]?res[0].movietime.times:[], text: data.decription})
                 })
             })
     }
@@ -39,29 +42,35 @@ class EditMovieDetail extends Component {
         reader.onload = (element) => {
             console.warn(element.target.result)
             console.log(files[0])
-            this.setState({ movie: this.state.movie, date: this.state.date , image: files[0]})
+            this.setState({ movie: this.state.movie, date: this.state.date , image: files[0], text: this.state.image})
         }
     }
 
     onClickEditButton() {
         const formData = new FormData()
-        if(this.state.image)
+        let startDate = this.state.date
+        startDate=`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`
+        if(this.state.image.toString()!=="[object Object]")
             formData.append('image', this.state.image, this.state.image.name)
-        formData.append('name', document.getElementById("movieName").value==""?this.state.movie.name:document.getElementById("movieName").value)
-        formData.append('decription', document.getElementById("description").value==""?this.state.movie.decription:document.getElementById("description").value)
-        formData.append('director', document.getElementById("director").value==""?this.state.movie.director:document.getElementById("director").value)
-        formData.append('actor', document.getElementById("actors").value==""?this.state.movie.actor:document.getElementById("actors").value)
-        formData.append('type', document.getElementById("type").value==""?this.state.movie.type:document.getElementById("type").value)
-        formData.append('length', document.getElementById("length").value==""?this.state.movie.length:document.getElementById("length").value)
-        formData.append('language', document.getElementById("language").value==""?this.state.movie.language:document.getElementById("language").value)
-        formData.append('rating', document.getElementById("rating").value==""?this.state.movie.rating:document.getElementById("rating").value)
-        formData.append('date', {date_start: new Date(), date_end: null})
-        formData.append('slug', document.getElementById("shortlink").value==""?this.state.movie.slug:document.getElementById("shortlink").value)
+        formData.append('name', document.getElementById("movieName").value == "" ? this.state.movie.name : document.getElementById("movieName").value)
+        formData.append('decription', this.state.text == "" ? this.state.movie.decription : this.state.text)
+        formData.append('director', document.getElementById("director").value == "" ? this.state.movie.director : document.getElementById("director").value)
+        formData.append('actor', document.getElementById("actors").value == "" ? this.state.movie.actor : document.getElementById("actors").value)
+        formData.append('type', document.getElementById("type").value == "" ? this.state.movie.type : document.getElementById("type").value)
+        formData.append('length', document.getElementById("length").value == "" ? this.state.movie.length : document.getElementById("length").value)
+        formData.append('language', document.getElementById("language").value == "" ? this.state.movie.language : document.getElementById("language").value)
+        formData.append('rating', document.getElementById("rating").value == "" ? this.state.movie.rating : document.getElementById("rating").value)
+        formData.append('date_start', startDate)
+        formData.append('slug', document.getElementById("shortlink").value == "" ? this.state.movie.slug : document.getElementById("shortlink").value)
         fetch(`http://localhost:3000/movie/${this.state.movie._id}`, {
             method: 'PUT',
             body: formData
         })
-        .then(e => window.location.href=window.location.origin+"/administrator/phim")
+            .then(res => {if(res.message=='Đã cập nhập') window.location.href = window.location.origin + "/administrator/phim"})
+    }
+
+    handleChangeText = (value) => {
+        this.setState({ movie: this.state.movie, date: this.state.date , image: this.state.image, text: value })
     }
 
     render() {
@@ -123,7 +132,7 @@ class EditMovieDetail extends Component {
                                 </div>
                                 <div>
                                     <label for="description"><b>Nội dung phim: </b></label>
-                                    <textarea type="text" style={{height: '500px'}} placeholder={this.state.movie.decription} name="description" id="description" required></textarea>
+                                    <ReactQuill value={this.state.text} onChange={this.handleChangeText} />
                                 </div>
                                 <div>
                                     <label for="linkTrailer"><b>Link trailer: </b></label>

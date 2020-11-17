@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import SideMoviesList from '../SideMoviesList/SideMoviesList';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import './movies.css'
+import TomatoesImage from '../../Images/RottenTomatoes.png'
+import StarImage from '../../Images/Star.png'
+
+const link = "http://localhost:3000/"
 
 class MovieDetail extends Component {
     constructor(props) {
@@ -51,30 +56,30 @@ class MovieDetail extends Component {
     }
     render() {
         const startDate = new Date(this.state.movie.date_start)
-        const img = this.state.movie.image
+        let image = this.state.movie.image
+        if(String(image).indexOf("http")<0) image=link+image
         let trailer = new String(this.state.movie.trailer)
         let suatchieu = this.state.movietimes.filter(element => (new Date(element.movietime.date))<(new Date())).slice(0,7).map(mvt => {
             const date = new Date(mvt.movietime.date)
             return(<div className="ngayChieuPhim" id={mvt._id} onClick={() => this.updateTime(mvt._id)}>{date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()}</div>)
         })
         const giochieu = this.state.times.map(gio => <div className="gioChieuPhim" id={gio._id} onClick={() => this.updateGio(gio._id)}>{gio.hour}</div>)
-        console.log(this.state)
         trailer = trailer.slice(trailer.search('embed/')+6).slice(0,trailer.slice(trailer.search('embed/')+6).search('"'))
         return (
             <div className="movieDetail">
                 <div style={{marginRight: '8%', width: "60%"}}>
                     <div className="movieHeadInfo">
-                        <img src={img}/>
+                        <img id="filmImage" src={image}/>
                         <div className="movieHeadText">
                             <h3 className="header-text">{this.state.movie.name}</h3>
                             {/* <p>{this.state.movie.name}</p> */}
-                            <div><img />{this.state.movie.rating}</div>
+                            <div className="ratingLine"><img className="tomatoes" src={TomatoesImage}/> {this.state.movie.rating}/5<img className="starImg" src={StarImage}/></div>
                             <p><b>Đạo diễn: </b>{this.state.movie.director}</p>
                             <p><b>Diễn viên: </b>{this.state.movie.actor}</p>
                             <p><b>Thể loại: </b>{this.state.movie.type}</p>
                             <p><b>Ngày khởi chiếu: </b>{`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`}</p>
-                            <div className="button" onClick={this.onClickMuaVe}><i className="fa fa-shopping-cart"></i> Mua vé</div>
                         </div>
+                        <div className="buttonContainer"><div className="button" onClick={this.onClickMuaVe}><i className="fa fa-shopping-cart"></i> Mua vé</div></div>
                     </div>
                     <div>
                         <p className="header-text">Trailer</p>
@@ -82,7 +87,7 @@ class MovieDetail extends Component {
                     </div>
                     <div>
                         <p className="header-text">Nội dung phim</p>
-                        <p style={{width: "90%"}}>{this.state.movie.decription}</p>
+                        <p style={{width: "90%"}}>{ReactHtmlParser(this.state.movie.decription)}</p>
                     </div>
                     <div id="mua-ve-div">
                         <p className="header-text">Suất chiếu</p>

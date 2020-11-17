@@ -7,15 +7,17 @@ import AdminNav from '../AdminNav'
 import './adminPhim.css'
 import Datepicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 class CreateMovie extends Component {
     constructor(props) {
         super(props)
         this.onClickTaoPhim = this.onClickTaoPhim.bind(this)
+        this.handleChangeText = this.handleChangeText.bind(this)
     }
 
-    state = { movie: {}, date: new Date() , image: {}}
+    state = { movie: {}, date: new Date() , image: {}, text: ""}
 
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
@@ -27,7 +29,7 @@ class CreateMovie extends Component {
                 fetch(`http://localhost:3000/movietime/${data._id}`)
                 .then(response => response.json())
                 .then(res => {
-                    this.setState({ movie: data, date: new Date(), image: {}})
+                    this.setState({ movie: data, date: new Date(), image: {}, text: ""})
                 })
             })
     }
@@ -39,16 +41,18 @@ class CreateMovie extends Component {
         reader.onload = (element) => {
             console.warn(element.target.result)
             console.log(files[0])
-            this.setState({ movie: this.state.movie, date: this.state.date , image: files[0]})
+            this.setState({ movie: this.state.movie, date: this.state.date , image: files[0], text: this.state.text})
         }
     }
 
     onClickTaoPhim() {
         const formData = new FormData()
-        //if(this.state.image)
+        let startDate = this.state.date
+        startDate=`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`
+        if(this.state.image.toString()!=="[object Object]")
             formData.append('image', this.state.image, this.state.image.name)
         formData.append('name', document.getElementById("movieName").value)
-        formData.append('decription', document.getElementById("description").value)
+        formData.append('decription', this.state.text)
         formData.append('director', document.getElementById("director").value)
         formData.append('actor', document.getElementById("actors").value)
         formData.append('type', document.getElementById("type").value)
@@ -56,12 +60,16 @@ class CreateMovie extends Component {
         formData.append('language', document.getElementById("language").value)
         formData.append('rating', document.getElementById("rating").value)
         formData.append('playing', false)
-        formData.append('date', {date_start: new Date(), date_end: null})
+        formData.append('date', startDate)
         formData.append('slug', document.getElementById("shortlink").value)
         fetch('http://localhost:3000/movie/create', {
             method: 'POST',
             body: formData
-        }).then(e => window.location.href=window.location.origin+"/administrator/phim")
+        }).then(res => {  window.location.href=window.location.origin+"/administrator/phim" })
+    }
+
+    handleChangeText = (value) => {
+        this.setState({ movie: this.state.movie, date: this.state.date , image: this.state.image, text: value })
     }
 
     render() {
@@ -120,7 +128,8 @@ class CreateMovie extends Component {
                                 </div>
                                 <div>
                                     <label for="description"><b>Nội dung phim: </b></label>
-                                    <textarea type="text" style={{height: '500px'}} placeholder={this.state.movie.decription} name="description" id="description" required></textarea>
+                                    {/* <textarea type="text" style={{height: '500px'}} placeholder={this.state.movie.decription} name="description" id="description" required></textarea> */}
+                                    <ReactQuill value={this.state.text} onChange={this.handleChangeText} />
                                 </div>
                                 <div>
                                     <label for="linkTrailer"><b>Link trailer: </b></label>

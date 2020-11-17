@@ -23,13 +23,21 @@
     display: flex;
 }
 
-.movieHeadInfo img {
-    width: 200px;
+#filmImage {
+    max-height: 250px;
     border-radius: 5px;
+}
+
+.buttonContainer {
+    width: 20%;
+    margin-top: 20%;
+    height: 20%;
+    margin-left: 10%;
 }
 
 .movieHeadText {
     margin: 0 20px;
+    width: 50%;
 }
 
 .movieHeadText p {
@@ -37,11 +45,20 @@
     padding: 0;
 }
 
+.ratingLine {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.ratingLine img {
+    vertical-align: middle;
+}
+
 .suatchieu {
     width: 90%;
     min-height: 200px;
     max-width: 1000px;
-    background-color: rgb(199, 199, 199);
+    background-color: rgb(243 243 243);
     border-radius: 20px;
     padding: 10px 20px;
 }
@@ -75,6 +92,7 @@
     background-color:  rgb(238, 238, 238);
     font-weight: bold;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .gio-chieu {
@@ -85,6 +103,7 @@
     border-radius: 10px;
     height: 100px;
     background-color: rgb(219, 219, 219);
+    cursor: pointer;
 }
 
 .buttonchonghe {
