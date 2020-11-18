@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import '../AdminPage.css'
 import AdminLogin from '../../AdminLogin'
-import MovieComponent from './MovieComponent'
 import AdminNav from '../AdminNav'
 import './adminPhim.css'
 import Datepicker from 'react-datepicker'

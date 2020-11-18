@@ -11,15 +11,17 @@ class LoginButton extends Component {
         this.state={data: {}};
     }
     componentDidMount() {
-        fetch('http://localhost:3000/account/me', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-token': encodeToken
-              }
-        }).then(res => res.json()).then(data => {
-            this.setState({data:data})
-        }).catch(e => console.log(e))
+        if(encodeToken){
+            fetch('http://localhost:3000/account/me', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': encodeToken
+                }
+            }).then(res => res.json()).then(data => {
+                this.setState({data:data})
+            }).catch(e => console.log(e))
+        }
     }
     signUp = () => {
         document.getElementById('SignUpLogin').style.display="flex"

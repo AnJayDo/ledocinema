@@ -44,7 +44,7 @@ class AdminPage extends Component {
         if(Cookies.get('admin')=="admin" && Cookies.get('passwordAd')=="admin")
         return(<div className="adminPage">
             <AdminNav />
-            <div className="adminMainContainer">{this.state.container}</div>
+            <div style={{maxHeight: (window.innerHeight-60)}} className="adminMainContainer">{this.state.container}</div>
         </div>)
         else return(<AdminLogin/>)
     }

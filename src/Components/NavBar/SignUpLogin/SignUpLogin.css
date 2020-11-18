@@ -121,6 +121,7 @@ h1 {
     text-align: left;
     color: #df4b4b;
     border: 4px solid #df4b4b;
+    cursor: pointer;
 }
 
 .SignInOptions:hover {

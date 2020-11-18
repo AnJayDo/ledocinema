@@ -72,7 +72,6 @@ class MovieDetail extends Component {
                         <img id="filmImage" src={image}/>
                         <div className="movieHeadText">
                             <h3 className="header-text">{this.state.movie.name}</h3>
-                            {/* <p>{this.state.movie.name}</p> */}
                             <div className="ratingLine"><img className="tomatoes" src={TomatoesImage}/> {this.state.movie.rating}/5<img className="starImg" src={StarImage}/></div>
                             <p><b>Đạo diễn: </b>{this.state.movie.director}</p>
                             <p><b>Diễn viên: </b>{this.state.movie.actor}</p>

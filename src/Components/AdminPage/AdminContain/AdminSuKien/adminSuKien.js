@@ -3,38 +3,37 @@ import Cookies from 'js-cookie';
 import '../AdminPage.css'
 import AdminLogin from '../../AdminLogin'
 import AdminNav from '../AdminNav'
-import './adminPhim.css'
-import MovieComponent from './MovieComponent'
+import './adminSuKien.css'
+import EventComponent from './EventComponent'
 
 
-class AdminPhimPage extends Component {
+class AdminSuKien extends Component {
     constructor(props) {
         super(props)
-        this.state = { movies: [] }
+        this.state = { events: [] }
     }
 
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
         document.getElementById('footer').style.display = 'none'
-        fetch('http://localhost:3000')
-            .then(response => response.json())
-            .then(data => this.setState({ movies: data }))
+        fetch('http://localhost:3000/event/all', {method: 'GET'}).then(res => res.json())
+          .then(data => this.setState({events:data}))
     }
 
     render() {
 
         if (Cookies.get('admin') == "admin" && Cookies.get('passwordAd') == "admin") {
-            const movies = this.state.movies.map(movie => <MovieComponent movie={movie} />)
+            const events = this.state.events.map(event => <EventComponent event={event} />)
             return (
                 <div className="adminPage">
                     <AdminNav />
                     <div style={{maxHeight: (window.innerHeight-60)}} className="adminMainContainer">
                         <div className="topPhimAdmin">
-                            <p className="header-text">Danh sách phim</p>
-                            <a href="/administrator/phim/themphim"><div className="button">+ Thêm phim</div></a>
+                            <p className="header-text">Danh sách sự kiện</p>
+                            <a href="/administrator/sukien/themsukien"><div className="button">+ Thêm sự kiện</div></a>
                         </div>
                         <div>
-                            {movies}
+                            {events}
                         </div>
                     </div>
                 </div>
@@ -45,4 +44,4 @@ class AdminPhimPage extends Component {
     }
 }
 
-export default AdminPhimPage
+export default AdminSuKien

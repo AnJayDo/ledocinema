@@ -66,7 +66,7 @@ class EditMovieDetail extends Component {
             method: 'PUT',
             body: formData
         })
-            .then(res => {if(res.message=='Đã cập nhập') window.location.href = window.location.origin + "/administrator/phim"})
+            .then(res => { if (res.message == 'Đã cập nhập') window.location.href = window.location.origin + "/administrator/phim" })
     }
 
     handleChangeText = (value) => {
@@ -90,7 +90,7 @@ class EditMovieDetail extends Component {
                             <p className="header-text">Thông tin chỉnh sửa</p>
                             <form className="formEdit">
                                 <div>
-                                    <label for="movieName"><b>Hình:</b></label>
+                                    <label for="image"><b>Hình:</b></label>
                                     <input type="file"  name="image" id="image" onChange={(element) => this.onChangeImage(element)} required></input>
                                 </div>
                                 <div>

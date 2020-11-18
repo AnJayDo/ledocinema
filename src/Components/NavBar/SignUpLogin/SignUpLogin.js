@@ -5,6 +5,9 @@ import GoogleLogin from 'react-google-login'
 import './SignUpLogin.css';
 
 const link = `http://localhost:3000`
+const onClickFacebook = (data) => {
+    console.log(data)
+}
 const responseFacebook = (response) => {
     fetch(`${link}/account/register`, {
         method: 'POST',
@@ -319,6 +322,7 @@ function SignUpLogin() {
                     autoLoad={false}
                     fields="name,email,picture"
                     callback={responseFacebook}
+                    onClick={onClickFacebook}
                     render={renderProps => (
                         <div onClick={renderProps.onClick} className="SignInOptions">
                             <img style={{ height: "30px", width: "30px", marginRight: "30px", marginLeft: "10px" }} src="https://cdn.iconscout.com/icon/free/png-256/facebook-logo-2019-1597680-1350125.png" ></img>
@@ -326,6 +330,7 @@ function SignUpLogin() {
                         </div>
                     )}
                 />
+                <div><a href="/resetpassword"><u>Quên mật khẩu</u></a></div>
             </div>
         </div>
     );

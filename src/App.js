@@ -12,10 +12,13 @@ import UserPage from './Components/UserPage/UserPage'
 import SeatPage from './Components/SeatPage/SeatPage'
 import successChangePage from './Components/UserPage/successChangePassword'
 import ErrorPage from './Components/errorPage'
-import PhimAdminLogin from './Components/AdminPage/AdminContain/AdminPhim/adminPhim'
 import AdminLogin from './Components/AdminPage/AdminContain/AdminPage'
-import EditPhimAdmin from './Components/AdminPage/AdminContain/AdminPhim/EditMovieDetail'
+import PhimAdmin from './Components/AdminPage/AdminContain/AdminPhim/adminPhim'
+import EditMovieDetail from './Components/AdminPage/AdminContain/AdminPhim/EditMovieDetail'
 import CreateMovie from './Components/AdminPage/AdminContain/AdminPhim/CreateMovie'
+import SuKienAdmin from './Components/AdminPage/AdminContain/AdminSuKien/adminSuKien'
+import EditEvent from './Components/AdminPage/AdminContain/AdminSuKien/EditEvent'
+import CreateEvent from './Components/AdminPage/AdminContain/AdminSuKien/CreateEvent'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import MessengerCustomerChat from 'react-messenger-customer-chat';
@@ -32,7 +35,9 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <MessengerCustomerChat pageId="110394880858712" appId="1936758909798403" />
         <NavBar />
+        <div style={{minHeight: "700px"}}>
         <Switch>
           <Route path="/" exact component={LandingPage}></Route>
           <Route path="/events" exact component={EventsPage}></Route>
@@ -46,14 +51,14 @@ function App() {
           <Route path="/logout"></Route>
           <Route path="/administrator" exact component={AdminLogin}></Route>
           <Route path="/administrator/phim/themphim" component={CreateMovie}></Route>
-          <Route path="/administrator/phim/:movie" component={EditPhimAdmin}></Route>
-          <Route path="/administrator/phim" component={PhimAdminLogin}></Route>
+          <Route path="/administrator/phim/:movie" component={EditMovieDetail}></Route>
+          <Route path="/administrator/phim" component={PhimAdmin}></Route>
+          <Route path="/administrator/sukien/themsukien" component={CreateEvent}></Route>
+          <Route path="/administrator/sukien/:movie" component={EditEvent}></Route>
+          <Route path="/administrator/sukien" component={SuKienAdmin}></Route>
           <Route path="*" component={ErrorPage}></Route>
         </Switch>
-        <MessengerCustomerChat
-          pageId="110394880858712"
-          appId="1936758909798403"
-        />
+        </div>
         <Footer />
       </div>
     </Router>
