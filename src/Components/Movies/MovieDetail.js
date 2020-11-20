@@ -97,7 +97,7 @@ class MovieDetail extends Component {
                             <div className="gio-chieu">
                                 {giochieu}
                             </div>
-                            <div className="buttonchonghe"><div className="button" id="buttonGhe" onClick={() => { if(this.state.chosenTime!="") window.location.href=window.location.href+"/"+this.state.chosenDate+"/"+this.state.chosenTime}}><i className="fa fa-shopping-cart"></i> Chọn ghế</div></div>
+                            <div className="buttonchonghe"><div className="button" id="buttonGhe" onClick={() => { if(this.state.chosenTime!="") window.location.href=window.location.origin+"/movies/"+this.state.movie.slug+"/"+this.state.chosenDate+"/"+this.state.chosenTime}}><i className="fa fa-shopping-cart"></i> Chọn ghế</div></div>
                         </div>
                     </div>
 

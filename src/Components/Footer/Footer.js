@@ -9,7 +9,7 @@ import YouTubeFooterIcon from '../../Images/YouTube-Footer-Icon.png'
 function Footer() {
     return (
         <div className="Footer" id="footer">
-            <div>
+            <div style={{marginTop: '20px'}}>
                 <div className="footer-main-container">
                     <div id="footer-about-us">
                         <p className="footer-bold-header">Về chúng tôi</p>
@@ -32,8 +32,7 @@ function Footer() {
                             <a href="#"><img className="footer-social" src={InstagramFooterIcon}/></a>
                             <a href="#"><img className="footer-social" src={TwitterFooterIcon}/></a>
                         </p>
-                        <p>Đia chỉ: 46 Đường Trần Phú, Hải Châu 1, </p>
-                        <p>Hải Châu,Đà Nẵng 550000</p>
+                        <p style={{marginTop: '20px'}}>Đia chỉ: 46 Đường Trần Phú, Hải Châu 1, Hải Châu,Đà Nẵng 550000</p>
                         <p id="footer-download" className="footer-bold-header">DOWNLOAD APP ON <img src={AppleFooterIcon} /><img src={CHPlayFooterIcon} /></p>
                     </div>
                 </div>

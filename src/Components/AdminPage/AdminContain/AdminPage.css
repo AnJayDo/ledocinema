@@ -8,9 +8,9 @@
 }
 
 .adminMainContainer {
-    overflow-y: scroll;
-    background-color: #f7f7f7;
-    padding: 20px;
+  overflow-y: scroll;
+  background-color: #f7f7f7;
+  padding: 20px;
 }
 
 .adminMainContainer::-webkit-scrollbar {
@@ -29,4 +29,70 @@
 /* Handle on hover */
 .adminMainContainer::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.tagOptions {
+  display: flex;
+}
+
+.dataChart {
+  width: 46%;
+  padding: 1%;
+  margin: 20px 1%;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.option {
+  margin: 10px 5px;
+  border-radius: 10px;
+  padding: 5px 10px 10px 12px;
+  background-color: #f3f3f3;
+  color: #b9b9b9;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: #dedede;
+  color: gray;
+}
+
+.Selected {
+  background-color: #fff4c0;
+  color: #ffb121;
+}
+
+.infoCard {
+  display: flex;
+  margin: 20px 0.5%;
+  padding: 1.8% 1.5% 2% 1.5%;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;    
+}
+
+.infoCardHead {
+  display: flex;
+  color: #ffb121;
+}
+
+.infoCardHead i {
+  font-size: 40px;
+  padding: 15px 0px;
+}
+
+.infoCardHead b {
+  max-width: 40px;
+  line-height: 33px;
+  font-size: 28px;
+}
+
+.infoCardDetails{
+  margin-left: 10px;
+  padding: 0;
+}
+
+.infoCardDetails p {
+  margin: 0;
+  padding: 0;
 }

@@ -20,7 +20,7 @@ a {
   width: 90%;
   margin: 10px 5%;
   display: flex;
-  box-shadow: 3px 3px 3px 2px #888888;
+  box-shadow: 3px 3px 13px -1px #88884F;
   background-color: white;
   border-radius: 20px;
 }

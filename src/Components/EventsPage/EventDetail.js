@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SideMoviesList from '../SideMoviesList/SideMoviesList'
 import './EventsPage.css'
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class Event extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class Event extends Component {
           .then(data => this.setState({eventDetail: data, startDate: new Date(data.date.date_start), endDate: new Date(data.date.date_end)}))
     }
     render() {
-        const image = this.state.eventDetail.image
+        let image = String(this.state.eventDetail.image)
         let startDate = this.state.startDate
         let endDate = this.state.endDate
         console.log(startDate.getDate())
@@ -28,7 +29,7 @@ class Event extends Component {
                         <div className="eventDetail">
                             <div className="eventDetailHead">
                                 <div>
-                                    <a href={`/events/${this.state.eventDetail.slug}`}><img src={image} /></a>
+                                    <a href={`/events/${this.state.eventDetail.slug}`}><img src={image.indexOf("http")<0?("http://localhost:3000/"+this.state.eventDetail.image).replaceAll('\\','/'):this.state.eventDetail.image} /></a>
                                 </div>
                                 <div className="eventCardText">
                                     <h3 className="eventName">{this.state.eventDetail.name}</h3>
@@ -36,7 +37,7 @@ class Event extends Component {
                                     <h3>Thời gian kết thúc: {endDate.getDate()+"/"+endDate.getMonth()+"/"+endDate.getFullYear()}</h3>
                                 </div>
                             </div>
-                            <p>{this.state.eventDetail.discription}</p>
+                            <p>{ReactHtmlParser(this.state.eventDetail.discription)}</p>
                         </div>
                     </div>
                 </div>

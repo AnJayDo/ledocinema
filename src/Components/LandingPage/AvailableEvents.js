@@ -12,7 +12,7 @@ class AvailableEvents extends Component {
     }
 
     render() {
-        let eventList = this.state.events.map(event => <a style={{padding: '0 2px'}} href={`/events/${event.slug}`}><img style={{width:"250px", borderRadius:'5px'}} src={event.image}/></a>)
+        let eventList = this.state.events.map(event => <a style={{padding: '0 2px'}} href={`/events/${event.slug}`}><img style={{width:"250px", borderRadius:'5px'}} src={event.image.indexOf('http')==-1?('http://localhost:3000/'+event.image).replaceAll('\\','/'):event.image}/></a>)
         return (
             <div id='eventsContainer' >
                 {eventList}

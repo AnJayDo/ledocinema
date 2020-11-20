@@ -39,7 +39,7 @@ class LandingPage extends Component {
                     <SlideshowEvents />
                 </div>
                 <div>
-                    <div style={{display: "flex"}}><a href="#" id="phimDangChieu" onClick={this.clickAvailableMovies} className="header-text">Phim đang chiếu</a><a id="phimSapChieu" href="#" onClick={this.clickNonAvailableMovies} className="not-header-text">Phim sắp chiếu</a></div>
+                    <div style={{display: "flex"}}><a style={{cursor: "pointer"}} id="phimDangChieu" onClick={this.clickAvailableMovies} className="header-text">Phim đang chiếu</a><a id="phimSapChieu" style={{cursor: "pointer"}} onClick={this.clickNonAvailableMovies} className="not-header-text">Phim sắp chiếu</a></div>
                     <div id="movies-list">
                         {this.state.movies}
                     </div>

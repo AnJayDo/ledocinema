@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import GoogleLogin from 'react-google-login'
 import './SignUpLogin.css';
+import Notify from '../../Notify/Notify'
+import ReactDOM from 'react-dom'
 
 const link = `http://localhost:3000`
 const onClickFacebook = (data) => {
@@ -176,7 +178,7 @@ function SignUpLogin() {
         let reenterpassword = document.getElementById('password-repeat').value
         let name = document.getElementById('name').value
         let email = document.getElementById('email').value
-        if (password == reenterpassword) {
+        if (password == reenterpassword && email!=="" && name!=="" &&  password!=="" ) {
             fetch(`${link}/account/register`, {
                 method: 'POST',
                 mode: 'cors', // no-cors, *cors, same-origin
@@ -222,33 +224,41 @@ function SignUpLogin() {
                                 }
                             }).catch(e => console.log(e))
                     }
+                    else ReactDOM.render(<Notify status="fail" message={data.message} />, document.getElementById('notify'))
                 }).catch(e => console.log(e))
+        } else {
+            ReactDOM.render(<Notify status="fail" message="Mật khẩu và mật khẩu của bạn không trùng khớp hoặc bạn nhập thiếu thông tin." />, document.getElementById('notify'))
         }
     }
     let postLogin = () => {
-        fetch(`${link}/account/login`, {
-            method: 'POST',
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify({
-                email: document.getElementById('emailLogin').value,
-                password: document.getElementById('passwordLogin').value
+        if(document.getElementById('emailLogin').value=="" || document.getElementById('passwordLogin').value==""){
+            ReactDOM.render(<Notify status="fail" message="Bạn vẫn chưa nhập đủ email và mật khẩu." />, document.getElementById('notify'))
+        }
+        else {
+            fetch(`${link}/account/login`, {
+                method: 'POST',
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify({
+                    email: document.getElementById('emailLogin').value,
+                    password: document.getElementById('passwordLogin').value
+                })
             })
-        })
-            .then(res => res.json()).then(data => {
-                console.log(data)
-                if (data.message == "login succes") {
-                    Cookies.set('jwt', data.token, { expires: 30 })
-                    window.location.reload()
-                }
-            }).catch(e => console.log(e))
+                .then(res => res.json()).then(data => {
+                    console.log(data)
+                    if (data.message == "login succes") {
+                        Cookies.set('jwt', data.token, { expires: 30 })
+                        window.location.reload()
+                    } else ReactDOM.render(<Notify status="fail" message={data.message} />, document.getElementById('notify'))
+                }).catch(e => console.log(e))
+        }
     }
     let isUsedMail = () => { }
     let isLongEnough = () => { }
@@ -303,6 +313,7 @@ function SignUpLogin() {
                         <input type="password" placeholder="Enter Password" name="password" id="passwordLogin" required></input>
                     </div>
                 </form>
+                <div><a href="/resetpassword"><u>Quên mật khẩu</u></a></div>
                 <button type="submit" onClick={showSignUp}>Đăng ký</button>
                 <button type="submit" onClick={postLogin}>Đăng nhập</button>
                 <GoogleLogin
@@ -330,7 +341,6 @@ function SignUpLogin() {
                         </div>
                     )}
                 />
-                <div><a href="/resetpassword"><u>Quên mật khẩu</u></a></div>
             </div>
         </div>
     );

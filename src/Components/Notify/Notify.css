@@ -61,6 +61,27 @@
     animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
+
+.fail-animation { 
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 20px;
+    margin: 16% auto;
+    font-family: UTMAvo;
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: red;
+    background-color: white;
+    z-index: 500;
+    width: 50%;
+    height: 30%;
+}
+
 @keyframes stroke {
     100% {
         stroke-dashoffset: 0;

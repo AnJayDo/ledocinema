@@ -1,8 +1,10 @@
 .adminNav {
     width: 15%;
     text-align: center;
-    height: 90%;
+    background-image: white;
     padding: 5% 30px 0% 0px;
+    box-shadow: -6px -6px 23px 11px #d6d6d6;
+    z-index: 50;
 }
 
 .adminNav ul{
@@ -13,7 +15,7 @@
 
 .adminNav ul li a{
     text-decoration: none;
-    color: rgb(143, 143, 143);
+    color: rgb(105 105 105);
     font-size: 24px;
     width: 60%;
     display: inline-grid;
@@ -30,7 +32,7 @@
 .adminNav ul li i {
     font-size: 27px;
     width: 30%;
-    color: rgb(143, 143, 143);
+    color: rgb(105 105 105);
 }
 
 .adminNav ul li:hover a {

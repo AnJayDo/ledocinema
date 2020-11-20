@@ -59,14 +59,17 @@ class MovieComponent extends Component {
                 <div className="movieButtons">
                     <div className="toggleContainer"><Toggle
                         defaultChecked={this.props.movie.playing?true:false}
-                        onChange={() => this.onChangeDangChieu(this.props.movie._id)} />
+                        onChange={() => {
+                            if(this.props.movie.playing==false) this.onChangeDangChieu(this.props.movie._id)
+                            else this.onChangeSapChieu(this.props.movie._id)
+                        }} />
                         <span> Đang chiếu</span>
                     </div>
-                    <div className="toggleContainer"><Toggle
+                    {/* <div className="toggleContainer"><Toggle
                         defaultChecked={this.props.movie.playing?false:true}
                         onChange={() => this.onChangeSapChieu(this.props.movie._id)} />
                         <span> Sắp chiếu</span>
-                    </div>
+                    </div> */}
                     <a  href={`/administrator/phim/${this.props.movie.slug}`}><div className="movieComponentButton" style={{ background: "linear-gradient(to bottom right, #777777, #888888)" }}><i class="far fa-edit"></i> Edit</div></a>
                     <a onClick={() => this.onClickDelete(this.props.movie._id)} href="#"><div className="movieComponentButton" style={{ background: "linear-gradient(to bottom right, #ffd752, #fa3838)" }}><i class="far fa-trash-alt"></i> Delete</div></a>
                 </div>

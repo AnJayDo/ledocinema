@@ -21,6 +21,7 @@ h3 {
 .eventCard img {
     height: 190px;
     width: auto;
+    max-width: 138px;
 }
 
 .eventCardText {
@@ -32,7 +33,12 @@ h3 {
     width: fit-content;
     overflow-y: hidden;
     margin: 0;
-    height: 90px;
+    height: 132px;
+    font-weight: normal;
+}
+
+.eventCard p strong {
+    font-weight: normal;
 }
 
 .eventCard a {
@@ -51,6 +57,7 @@ h3 {
 .eventDetailHead img{
     height: 190px;
     width: auto;
+    max-width: 138px;
 }
 
 .eventName {

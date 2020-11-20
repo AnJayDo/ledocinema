@@ -23,7 +23,7 @@ class MoviesPage extends Component {
         const mapedMovies = movies.map(arr => <div className='rowMovies'>{arr}</div>)
         return (
             <div className="moviesPage">
-                <div style={{marginRight: '50px'}}> 
+                <div style={{marginRight: '50px', width: '70%'}}> 
                     <p className="header-text">Phim</p>
                     {mapedMovies}
                 </div>

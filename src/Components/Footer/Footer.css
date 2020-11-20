@@ -15,7 +15,7 @@
 
 .footer-cinema-text {
     color: #aca693;
-    padding-bottom: 20px;
+    padding: 20px;
 }
 
 .footer-main-container {
@@ -25,7 +25,8 @@
 }
 
 .Footer p {
-    height: 10px;
+    line-height: 20px;
+    margin: 5px;
 }
 
 .footer-bold-header {
