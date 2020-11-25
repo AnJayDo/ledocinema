@@ -4,6 +4,8 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 class Event extends Component {
     render() {
         const image = this.props.event.image
+        let startDate = new Date(this.props.event.date.date_start)
+        let endDate = new Date(this.props.event.date.date_end)
         return (
             <div className="eventCard">
                 <div>
@@ -11,6 +13,7 @@ class Event extends Component {
                 </div>
                 <div className="eventCardText">
                     <a href={`/events/${this.props.event.slug}`}><h3>{this.props.event.name}</h3></a>
+                    <p style={{color:"gray", maxHeight: "25px"}}>Thời gian bắt đầu: {startDate.getDate()+"/"+(startDate.getMonth()+1)+"/"+startDate.getFullYear()} - Thời gian kết thúc: {endDate.getDate()+"/"+(endDate.getMonth()+1)+"/"+endDate.getFullYear()}</p>
                     <p>{ReactHtmlParser(this.props.event.discription)}</p>
                     <div style={{width: '100%', textAlign: 'right'}}><a href={`/events/${this.props.event.slug}`}>Xem thêm</a></div>
                 </div>

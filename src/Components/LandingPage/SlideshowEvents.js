@@ -12,7 +12,6 @@ class Slideshow extends Component {
     componentDidMount() {
         fetch('http://localhost:3000/event/all', {method: 'GET'}).then(res => res.json())
           .then(data => this.setState({events:data}))
-        console.log(this.state.events)
     }
 
     render() {

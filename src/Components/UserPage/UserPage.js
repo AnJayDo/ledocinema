@@ -32,7 +32,7 @@ class UserPage extends Component {
             }).then(res => res.json()).then(data => {
                 if(data.message=="Đã cập nhập ảnh đại diện") {
                     this.setState({ data: this.state.data, history: this.state.history , image:link+"src/resoures/"+files[0].name})
-                    ReactDOM.render(<Notify message={data.message} />, document.getElementById('notify'));
+                    ReactDOM.render(<Notify message={data.message} />, document.getElementById('notify'))
                 }
             }).catch(e => console.log(e))
         }

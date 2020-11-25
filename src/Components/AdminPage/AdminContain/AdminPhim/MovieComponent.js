@@ -6,9 +6,7 @@ class MovieComponent extends Component {
     constructor(props) {
         super(props)
     }
-
-    componentDidMount() {
-    }
+    state = {playing: this.props.movie.playing}
 
     onChangeDangChieu(id) {
         fetch(`http://localhost:3000/movie/${id}/dangchieu`, {
@@ -44,7 +42,10 @@ class MovieComponent extends Component {
     }
 
     render() {
-        const startDate = new Date(this.props.movie.date_start)
+        let startDate
+        if(!this.props.movie.date) 
+            startDate = new Date(this.props.movie.date_start)
+        else startDate = new Date(this.props.movie.date.date_start)
         const image = this.props.movie.image?this.props.movie.image:" "
         return (
             <div className="movieComponent">
@@ -54,11 +55,11 @@ class MovieComponent extends Component {
                     <p><b>Đạo diễn: </b>{this.props.movie.director}</p>
                     <p><b>Diễn viên: </b>{this.props.movie.actor}</p>
                     <p><b>Thể loại: </b>{this.props.movie.type}</p>
-                    <p><b>Ngày khởi chiếu: </b>{`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`}</p>
+                    <p><b>Ngày khởi chiếu: </b>{`${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`}</p>
                 </div>
                 <div className="movieButtons">
                     <div className="toggleContainer"><Toggle
-                        defaultChecked={this.props.movie.playing?true:false}
+                        defaultChecked={this.state.playing}
                         onChange={() => {
                             if(this.props.movie.playing==false) this.onChangeDangChieu(this.props.movie._id)
                             else this.onChangeSapChieu(this.props.movie._id)

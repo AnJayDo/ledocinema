@@ -1,6 +1,6 @@
 h3 {
     font-family: UTMAvo;
-    margin: 4px;
+    margin: 0 0 4px 0;
 }
 
 .eventsPage {
@@ -26,14 +26,14 @@ h3 {
 
 .eventCardText {
     width: 100%;
-    padding: 0px 10px;
+    padding: 0px 20px;
 }
 
 .eventCard p {
     width: fit-content;
     overflow-y: hidden;
     margin: 0;
-    height: 132px;
+    height: 112px;
     font-weight: normal;
 }
 

@@ -45,7 +45,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <MessengerCustomerChat pageId="110394880858712" appId="1936758909798403" />
+        <MessengerCustomerChat themeColor="#ffc34c" language='vn_VN' pageId="110394880858712" appId="1936758909798403" />
         <NavBar />
         <div style={{ minHeight: "700px" }}>
           <Switch>
@@ -53,7 +53,7 @@ function App() {
             <Route path="/events" exact component={EventsPage}></Route>
             <Route path="/events/:event" component={EventDetail}></Route>
             <Route path="/movies" exact component={MoviesPage}></Route>
-            <Route path="/movies/:movie/:movietime/:time" component={SeatPage}></Route>
+            <Route path="/movies/:movie/:movietime" component={SeatPage}></Route>
             <Route path="/movies/:movie" component={MovieDetail}></Route>
             <Route path="/members" component={MemberPage}></Route>
             <Route path="/user" component={UserPage}></Route>

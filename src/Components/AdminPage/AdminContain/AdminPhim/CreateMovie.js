@@ -8,6 +8,7 @@ import Datepicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import slugify from 'react-slugify'
 
 class CreateMovie extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class CreateMovie extends Component {
         this.handleChangeText = this.handleChangeText.bind(this)
     }
 
-    state = { movie: {}, date: new Date() , image: {}, text: ""}
+    state = { movie: {}, startDate: new Date(), endDate: new Date() , image: {}, text: ""}
 
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
@@ -25,11 +26,7 @@ class CreateMovie extends Component {
           .then(response => response.json())
           .then(data => 
             {     
-                fetch(`http://localhost:3000/movietime/${data._id}`)
-                .then(response => response.json())
-                .then(res => {
-                    this.setState({ movie: data, date: new Date(), image: {}, text: ""})
-                })
+                this.setState({ movie: data })
             })
     }
 
@@ -40,14 +37,12 @@ class CreateMovie extends Component {
         reader.onload = (element) => {
             console.warn(element.target.result)
             console.log(files[0])
-            this.setState({ movie: this.state.movie, date: this.state.date , image: files[0], text: this.state.text})
+            this.setState({ image: files[0]})
         }
     }
 
     onClickTaoPhim() {
         const formData = new FormData()
-        let startDate = this.state.date
-        startDate=`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`
         if(this.state.image.toString()!=="[object Object]")
             formData.append('image', this.state.image, this.state.image.name)
         formData.append('name', document.getElementById("movieName").value)
@@ -59,8 +54,9 @@ class CreateMovie extends Component {
         formData.append('language', document.getElementById("language").value)
         formData.append('rating', document.getElementById("rating").value)
         formData.append('playing', false)
-        formData.append('date', startDate)
-        formData.append('slug', document.getElementById("shortlink").value)
+        formData.append('date_start', this.state.startDate)
+        formData.append('date_end', this.state.endDate)
+        formData.append('slug', slugify(document.getElementById("movieName").value))
         fetch('http://localhost:3000/movie/create', {
             method: 'POST',
             body: formData
@@ -68,7 +64,7 @@ class CreateMovie extends Component {
     }
 
     handleChangeText = (value) => {
-        this.setState({ movie: this.state.movie, date: this.state.date , image: this.state.image, text: value })
+        this.setState({ text: value })
     }
 
     render() {
@@ -118,25 +114,28 @@ class CreateMovie extends Component {
                                 <div>
                                     <label for="type"><b>Ngày khởi chiếu: </b></label>
                                     <Datepicker
-                                        onChange={(value) => this.setState({movie: this.state.movie, 
-                                            date: value, movietimes: this.state.movietimes, times: this.state.times})}
+                                        onChange={(value) => this.setState({startDate: value})}
                                         dateFormat="dd/MM/yyyy"
                                         minDate={new Date()}
-                                        selected={this.state.date}
+                                        selected={this.state.startDate}
+                                    />
+                                </div>
+                                <div>
+                                    <label for="type"><b>Ngày kết thúc: </b></label>
+                                    <Datepicker
+                                        onChange={(value) => this.setState({endDate: value})}
+                                        dateFormat="dd/MM/yyyy"
+                                        minDate={new Date()}
+                                        selected={this.state.endDate}
                                     />
                                 </div>
                                 <div>
                                     <label for="description"><b>Nội dung phim: </b></label>
-                                    {/* <textarea type="text" style={{height: '500px'}} placeholder={this.state.movie.decription} name="description" id="description" required></textarea> */}
                                     <ReactQuill value={this.state.text} onChange={this.handleChangeText} />
                                 </div>
                                 <div>
                                     <label for="linkTrailer"><b>Link trailer: </b></label>
                                     <input type="text" placeholder={this.state.movie.trailer} name="linkTrailer" id="linkTrailer" required></input>
-                                </div>
-                                <div>
-                                    <label for="shortlink"><b>Đặt shortlink cho phim: </b></label>
-                                    <input type="text" placeholder={this.state.movie.slug} name="shortlink" id="shortlink" required></input>
                                 </div>
                             </form>
                         </div>

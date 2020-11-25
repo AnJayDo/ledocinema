@@ -9,12 +9,13 @@ import Datepicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import slugify from 'react-slugify'
 
 
 class EditMovieDetail extends Component {
     constructor(props) {
         super(props)
-        this.state =  { movie: {}, date: new Date() , image: {}, text: ""}
+        this.state =  { movie: {}, startDate: new Date(), endDate: new Date() , image: {}, text: ""}
         this.onClickEditButton = this.onClickEditButton.bind(this)
         this.handleChangeText = this.handleChangeText.bind(this)
     }
@@ -29,7 +30,8 @@ class EditMovieDetail extends Component {
                 fetch(`http://localhost:3000/movietime/${data._id}`)
                 .then(response => response.json())
                 .then(res => {
-                    this.setState({ movie: data, date: new Date(data.date_start?data.date_start:null), movietimes:res, times: res[0]?res[0].movietime.times:[], text: data.decription})
+                    this.setState({ movie: data, startDate: new Date(data.date?data.date.date_start:data.date_start),
+                        endDate: new Date(data.date?data.date.date_end:null), movietimes:res, times: res[0]?res[0].movietime.times:[], text: data.decription})
                 })
             })
     }
@@ -42,7 +44,7 @@ class EditMovieDetail extends Component {
         reader.onload = (element) => {
             console.warn(element.target.result)
             console.log(files[0])
-            this.setState({ movie: this.state.movie, date: this.state.date , image: files[0], text: this.state.image})
+            this.setState({image: files[0]})
         }
     }
 
@@ -60,8 +62,9 @@ class EditMovieDetail extends Component {
         formData.append('length', document.getElementById("length").value == "" ? this.state.movie.length : document.getElementById("length").value)
         formData.append('language', document.getElementById("language").value == "" ? this.state.movie.language : document.getElementById("language").value)
         formData.append('rating', document.getElementById("rating").value == "" ? this.state.movie.rating : document.getElementById("rating").value)
-        formData.append('date_start', startDate)
-        formData.append('slug', document.getElementById("shortlink").value == "" ? this.state.movie.slug : document.getElementById("shortlink").value)
+        formData.append('start_date', this.state.startDate.toJSON())
+        formData.append('end_date', this.state.endDate.toJSON())
+        formData.append('slug', document.getElementById("movieName").value == "" ? this.state.movie.slug : slugify(document.getElementById("movieName").value))
         fetch(`http://localhost:3000/movie/${this.state.movie._id}`, {
             method: 'PUT',
             body: formData
@@ -70,7 +73,7 @@ class EditMovieDetail extends Component {
     }
 
     handleChangeText = (value) => {
-        this.setState({ movie: this.state.movie, date: this.state.date , image: this.state.image, text: value })
+        this.setState({ text: value })
     }
 
     render() {
@@ -124,10 +127,19 @@ class EditMovieDetail extends Component {
                                 <div>
                                     <label for="type"><b>Ngày khởi chiếu: </b></label>
                                     <Datepicker
-                                        onChange={(value) => this.setState({movie: this.state.movie, 
-                                            date: value, movietimes: this.state.movietimes, times: this.state.times})}
+                                        onChange={(value) => this.setState({startDate: value})}
                                         dateFormat="dd/MM/yyyy"
-                                        selected={this.state.date}
+                                        minDate={new Date()}
+                                        selected={this.state.startDate}
+                                    />
+                                </div>
+                                <div>
+                                    <label for="type"><b>Ngày kết thúc: </b></label>
+                                    <Datepicker
+                                        onChange={(value) => this.setState({endDate: value})}
+                                        dateFormat="dd/MM/yyyy"
+                                        minDate={new Date()}
+                                        selected={this.state.endDate}
                                     />
                                 </div>
                                 <div>

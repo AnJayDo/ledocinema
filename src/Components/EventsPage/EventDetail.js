@@ -33,8 +33,8 @@ class Event extends Component {
                                 </div>
                                 <div className="eventCardText">
                                     <h3 className="eventName">{this.state.eventDetail.name}</h3>
-                                    <h3>Thời gian bắt đầu: {startDate.getDate()+"/"+startDate.getMonth()+"/"+startDate.getFullYear()}</h3>
-                                    <h3>Thời gian kết thúc: {endDate.getDate()+"/"+endDate.getMonth()+"/"+endDate.getFullYear()}</h3>
+                                    <h3>Thời gian bắt đầu: {startDate.getDate()+"/"+(startDate.getMonth()+1)+"/"+startDate.getFullYear()}</h3>
+                                    <h3>Thời gian kết thúc: {endDate.getDate()+"/"+(endDate.getMonth()+1)+"/"+endDate.getFullYear()}</h3>
                                 </div>
                             </div>
                             <p>{ReactHtmlParser(this.state.eventDetail.discription)}</p>

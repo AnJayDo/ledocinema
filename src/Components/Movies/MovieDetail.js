@@ -10,7 +10,8 @@ const link = "http://localhost:3000/"
 class MovieDetail extends Component {
     constructor(props) {
         super(props);
-        this.state = {movie: [], movietimes: [], times: [] , chosenDate: "", chosenTime: ""}
+        this.state = {movie: [], movietimes: [], times: [] , chosenDate: [], chosenTime: ""}
+        this.updateTime = this.updateTime.bind(this)
     }
     
     componentDidMount() {
@@ -21,7 +22,7 @@ class MovieDetail extends Component {
                 fetch(`http://localhost:3000/movietime/${data._id}`)
                 .then(response => response.json())
                 .then(res => {
-                    this.setState({ movie: data, movietimes:res, times: res[0]?res[0].movietime.times:[], chosenDate: "", chosenTime: ""})
+                    this.setState({ movie: data, movietimes:res, times: res, chosenDate: res})
                 })
             })
     }
@@ -33,8 +34,6 @@ class MovieDetail extends Component {
     }
 
     updateTime(key) {
-        const result = this.state.movietimes.filter( mvt => mvt._id==key )
-        console.log(result[0])
         for(let i=0; i<document.getElementsByClassName("ngayChieuPhim").length; i++) {
             document.getElementsByClassName("ngayChieuPhim")[i].style.backgroundColor='rgb(238, 238, 238)'
         }
@@ -42,7 +41,7 @@ class MovieDetail extends Component {
             document.getElementsByClassName("gioChieuPhim")[i].style.backgroundColor='white'
         }
         document.getElementById(key).style.backgroundColor="#ffd752"
-        this.setState({movie: this.state.movie, movietimes:this.state.movietimes,times: result[0].movietime.times, chosenDate: key, chosenTime: ""})
+        this.setState({chosenDate: this.state.times.filter( mvt => (new Date(mvt.movietime.date)).toLocaleDateString()==key )})
     }
 
     updateGio(key) {
@@ -52,18 +51,29 @@ class MovieDetail extends Component {
             document.getElementsByClassName("gioChieuPhim")[i].style.backgroundColor='white'
         }
         document.getElementById(key).style.backgroundColor="#ffd752"
-        this.setState({movie: this.state.movie, movietimes:this.state.movietimes, times: this.state.times, chosenDate: this.state.chosenDate, chosenTime: key})
+        this.setState({chosenTime: key})
     }
     render() {
-        const startDate = new Date(this.state.movie.date_start)
+        let startDate
+        if(!this.state.movie.date) 
+            startDate = new Date(this.state.movie.date_start)
+        else startDate = new Date(this.state.movie.date.date_start)
         let image = this.state.movie.image
         if(String(image).indexOf("http")<0) image=link+image
         let trailer = new String(this.state.movie.trailer)
-        let suatchieu = this.state.movietimes.filter(element => (new Date(element.movietime.date))<(new Date())).slice(0,7).map(mvt => {
-            const date = new Date(mvt.movietime.date)
-            return(<div className="ngayChieuPhim" id={mvt._id} onClick={() => this.updateTime(mvt._id)}>{date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()}</div>)
+        let suatchieu = []
+        let today = new Date()
+        suatchieu.push(new Date("2020-02-01T17:00:00.000+00:00"))
+        suatchieu.push(today)
+        for(let i=today.getDay(); i<7; i++) {
+            suatchieu.push(new Date(suatchieu[suatchieu.length-1].getTime()+86400000))
+        }
+        console.log(suatchieu)
+        suatchieu=suatchieu.map(e => {
+            const date = new Date(e)
+            return(<div className="ngayChieuPhim" id={e.toLocaleDateString()} onClick={() => this.updateTime(e.toLocaleDateString())}>{date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()}</div>)
         })
-        const giochieu = this.state.times.map(gio => <div className="gioChieuPhim" id={gio._id} onClick={() => this.updateGio(gio._id)}>{gio.hour}</div>)
+        const giochieu = this.state.chosenDate.map(gio => <div className="gioChieuPhim" id={gio._id} onClick={() => this.updateGio(gio._id)}>{gio.movietime.hour}</div>)
         trailer = trailer.slice(trailer.search('embed/')+6).slice(0,trailer.slice(trailer.search('embed/')+6).search('"'))
         return (
             <div className="movieDetail">
@@ -76,7 +86,7 @@ class MovieDetail extends Component {
                             <p><b>Đạo diễn: </b>{this.state.movie.director}</p>
                             <p><b>Diễn viên: </b>{this.state.movie.actor}</p>
                             <p><b>Thể loại: </b>{this.state.movie.type}</p>
-                            <p><b>Ngày khởi chiếu: </b>{`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`}</p>
+                            <p><b>Ngày khởi chiếu: </b>{`${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`}</p>
                         </div>
                         <div className="buttonContainer"><div className="button" onClick={this.onClickMuaVe}><i className="fa fa-shopping-cart"></i> Mua vé</div></div>
                     </div>
@@ -88,7 +98,7 @@ class MovieDetail extends Component {
                         <p className="header-text">Nội dung phim</p>
                         <p style={{width: "90%"}}>{ReactHtmlParser(this.state.movie.decription)}</p>
                     </div>
-                    <div id="mua-ve-div">
+                    {this.state.movie.playing==true?<div id="mua-ve-div">
                         <p className="header-text">Suất chiếu</p>
                         <div className="suatchieu">
                             <div className="ngay-chieu">
@@ -97,9 +107,9 @@ class MovieDetail extends Component {
                             <div className="gio-chieu">
                                 {giochieu}
                             </div>
-                            <div className="buttonchonghe"><div className="button" id="buttonGhe" onClick={() => { if(this.state.chosenTime!="") window.location.href=window.location.origin+"/movies/"+this.state.movie.slug+"/"+this.state.chosenDate+"/"+this.state.chosenTime}}><i className="fa fa-shopping-cart"></i> Chọn ghế</div></div>
+                            <div className="buttonchonghe"><div className="button" id="buttonGhe" onClick={() => { if(this.state.chosenTime!="") window.location.href=window.location.origin+"/movies/"+this.state.movie.slug+"/"+this.state.chosenTime}}><i className="fa fa-shopping-cart"></i> Chọn ghế</div></div>
                         </div>
-                    </div>
+                    </div>:null}
 
                 </div>
                 <SideMoviesList />
