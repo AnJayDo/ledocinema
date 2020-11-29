@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MovieCard from '../MovieCard/MovieCard'
-import { Slide } from 'react-slideshow-image';
 import './movies.css'
+import domain from '../domain'
 
 class AvailableMovies extends Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class AvailableMovies extends Component {
     }
     
     componentDidMount() {
-        fetch('http://localhost:3000')
+        fetch(domain.api)
           .then(response => response.json())
           .then(data => this.setState({ movies: data }))
     }
@@ -19,9 +19,7 @@ class AvailableMovies extends Component {
         const movies = this.state.movies.filter(e => e.playing==true).map( movie => <MovieCard movie={movie}/>)
         return (
             <div className="available moviesList">
-                {/* <Slide> */}
                     {movies}
-                {/* </Slide> */}
             </div>
         )
     }

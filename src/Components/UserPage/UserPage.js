@@ -3,6 +3,16 @@ import './UserPage.css'
 import Cookies from 'js-cookie'
 import ReactDOM from 'react-dom'
 import Notify from '../Notify/Notify'
+import domain from '../domain'
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 
 const encodeToken = Cookies.get('jwt')
 const link = "http://localhost:3000/"
@@ -23,7 +33,7 @@ class UserPage extends Component {
             const formData = new FormData()
             //if(this.state.image)
                 formData.append('avartar', files[0], files[0].name)
-            fetch('http://localhost:3000/account/avartar', {
+            fetch(`${domain.api}/account/avartar`, {
                 method: 'PUT',
                 headers: {
                     'auth-token': encodeToken
@@ -40,14 +50,14 @@ class UserPage extends Component {
 
 
     componentDidMount() {
-        fetch('http://localhost:3000/account/me', {
+        fetch(`${domain.api}/account/me`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': encodeToken
             }
         }).then(res => res.json()).then(data => {
-                fetch('http://localhost:3000/ticket/history', {
+                fetch(`${domain.api}/ticket/history`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,14 +66,33 @@ class UserPage extends Component {
             }).then(res => res.json()).then(res => {
                 let image = data.avartar
                 if(String(image).indexOf("http")<0) image=link+image
-                this.setState({ data: data, history: res, image: image })
+                let rows = res.slice(res.length-10).reverse()
+                this.setState({ data: data, history: rows, image: image })
+                console.log(this.state)
             })
         })
-        if (window.location.href.slice(window.location.origin.length) == "/user#changePassword") {
+        if (window.location.hash.length) {
             document.getElementsByClassName("header-text")[2].className="not-header-text"
-            document.getElementById("tabName1").className="header-text"
             document.getElementsByClassName("userContainerDetail")[0].style.display = "none"
-            document.getElementsByClassName("userContainerDetail")[1].style.display = "inline"
+            document.getElementsByClassName("userContainerDetail")[1].style.display = "none"
+            document.getElementsByClassName("userContainerDetail")[2].style.display = "none"
+            document.getElementsByClassName("userContainerDetail")[3].style.display = "none"
+            if(window.location.hash.slice(1)=="detail") {
+                document.getElementById(`tabName0`).className="header-text"
+                document.getElementsByClassName("userContainerDetail")[0].style.display = "flex"
+            }
+            if(window.location.hash.slice(1)=="changePassword") {
+                document.getElementById(`tabName1`).className="header-text"
+                document.getElementsByClassName("userContainerDetail")[1].style.display = "flex"
+            }
+            if(window.location.hash.slice(1)=="gift") {
+                document.getElementById(`tabName2`).className="header-text"
+                document.getElementsByClassName("userContainerDetail")[2].style.display = "flex"
+            }
+            if(window.location.hash.slice(1)=="buyhistory") {
+                document.getElementById(`tabName3`).className="header-text"
+                document.getElementsByClassName("userContainerDetail")[3].style.display = "flex"
+            }
         }
     }
 
@@ -147,6 +176,34 @@ class UserPage extends Component {
                 <div style={{ display: "none" }} id="userTab1" className="userContainerDetail">
                 </div>
                 <div style={{ display: "none" }} id="userTab1" className="userContainerDetail">
+                    <TableContainer component={Paper}>
+                        <Table style={{minWidth:800}} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell><b>Tên phim</b></TableCell>
+                                    <TableCell align="right"><b>Giờ chiếu</b></TableCell>
+                                    <TableCell align="right"><b>Thời điểm mua vé</b></TableCell>
+                                    <TableCell align="right"><b>Ghế đã chọn</b></TableCell>
+                                    <TableCell align="right"><b>Giá</b></TableCell>
+                                    <TableCell align="right"><b>Ngày chiếu</b></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {this.state.history.map((row) => (
+                                    <TableRow key={row.namemovie}>
+                                        <TableCell component="th" scope="row">
+                                            {row.namemovie}
+                                        </TableCell>
+                                        <TableCell align="right">{row.hour}</TableCell>
+                                        <TableCell align="right">{(new Date(row.createdAt)).toLocaleString('vn-VN')}</TableCell>
+                                        <TableCell align="right">{row.seat.toString()}</TableCell>
+                                        <TableCell align="right">{row.total_price}</TableCell>
+                                        <TableCell align="right">{(new Date(row.date)).toLocaleString('vn-VN')}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 </div>
             </div>
         )

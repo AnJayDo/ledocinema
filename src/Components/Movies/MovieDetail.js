@@ -65,10 +65,11 @@ class MovieDetail extends Component {
         let today = new Date()
         suatchieu.push(new Date("2020-02-01T17:00:00.000+00:00"))
         suatchieu.push(today)
-        for(let i=today.getDay(); i<7; i++) {
-            suatchieu.push(new Date(suatchieu[suatchieu.length-1].getTime()+86400000))
+        if(today.getDay()>0) {
+            for(let i=today.getDay(); i<7; i++) {
+                suatchieu.push(new Date(suatchieu[suatchieu.length-1].getTime()+86400000))
+            }
         }
-        console.log(suatchieu)
         suatchieu=suatchieu.map(e => {
             const date = new Date(e)
             return(<div className="ngayChieuPhim" id={e.toLocaleDateString()} onClick={() => this.updateTime(e.toLocaleDateString())}>{date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()}</div>)

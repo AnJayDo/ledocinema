@@ -55,7 +55,7 @@ class EventComponent extends Component {
                 <div className="movieInfo">
                     <h2><a className="movieName" href={`/administrator/sukien/${this.props.event.slug}`}>{this.props.event.name}</a></h2>
                     <p className="shortDes"><b>Nội dung: </b>{ReactHtmlParser(this.props.event.discription)}</p>
-                    <p><b>Ngày khởi chiếu: </b>{`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`}</p>
+                    <p><b>Ngày bắt đầu: </b>{`${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`}</p>
                 </div>
                 <div className="movieButtons">
                     <a  href={`/administrator/sukien/${this.props.event.slug}`}><div className="movieComponentButton" style={{ background: "linear-gradient(to bottom right, #777777, #888888)" }}><i class="far fa-edit"></i> Edit</div></a>

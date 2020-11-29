@@ -26,7 +26,7 @@ class EditEvent extends Component {
           .then(response => response.json())
           .then(data => 
             {   
-                this.setState({ event: data, date: data.date==null?new Date(data.date.date_start):new Date(), image: {}, text: data.discription?data.discription:""})
+                this.setState({ event: data, date: data.date?new Date(data.date.date_start):new Date(), image: {}, text: data.discription?data.discription:""})
             })
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Toggle from 'react-toggle'
 import "react-toggle/style.css"
+import domain from '../../../domain'
 
 class MovieComponent extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class MovieComponent extends Component {
     state = {playing: this.props.movie.playing}
 
     onChangeDangChieu(id) {
-        fetch(`http://localhost:3000/movie/${id}/dangchieu`, {
+        fetch(`${domain.api}/movie/${id}/dangchieu`, {
             method: 'PUT'
         })
             .then(response => response.json())
@@ -20,7 +21,7 @@ class MovieComponent extends Component {
     }
 
     onChangeSapChieu(id) {
-        fetch(`http://localhost:3000/movie/${id}/sapchieu`, {
+        fetch(`${domain.api}/movie/${id}/sapchieu`, {
             method: 'PUT'
         })
             .then(response => response.json())
@@ -31,7 +32,7 @@ class MovieComponent extends Component {
     }
 
     onClickDelete(id) {
-        fetch(`http://localhost:3000/movie/${id}`, {
+        fetch(`${domain.api}/movie/${id}`, {
             method: 'DELETE'
         })
             .then(response => response.json())

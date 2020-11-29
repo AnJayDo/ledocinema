@@ -56,6 +56,8 @@ h1 {
 }
 .SignUp form div label b {
     width: fit-content;
+    display: block;
+    width: 50%;
 }
 
 .registerNotify {

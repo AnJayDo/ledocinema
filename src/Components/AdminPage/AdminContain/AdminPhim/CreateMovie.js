@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import slugify from 'react-slugify'
+import domain from '../../../domain';
 
 class CreateMovie extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class CreateMovie extends Component {
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
         document.getElementById('footer').style.display = 'none'
-        fetch(`http://localhost:3000/movie/cuc-no-hoa-cuc-cung`)
+        fetch(`${domain.api}/movie/cuc-no-hoa-cuc-cung`)
           .then(response => response.json())
           .then(data => 
             {     
@@ -57,7 +58,7 @@ class CreateMovie extends Component {
         formData.append('date_start', this.state.startDate)
         formData.append('date_end', this.state.endDate)
         formData.append('slug', slugify(document.getElementById("movieName").value))
-        fetch('http://localhost:3000/movie/create', {
+        fetch(`${domain.api}/movie/create`, {
             method: 'POST',
             body: formData
         }).then(res => {  window.location.href=window.location.origin+"/administrator/phim" })

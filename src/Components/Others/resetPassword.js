@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import '../UserPage/UserPage.css'
 import ReactDOM from 'react-dom'
 import Notify from '../Notify/Notify'
+import domain from '../domain'
+
+
 class ResetPassword extends Component {
     constructor(props) {
         super(props);
     }
     layLaiMatKhau() {
-        const data = new FormData()
         if(document.getElementById('emailReset').value=="")
             ReactDOM.render(<Notify status="fail" message="Mời bạn nhập email." />, document.getElementById('notify'))
         else {
-            data.append('email', document.getElementById('emailReset').value)
-            fetch('http://localhost:3000/account/resetpassword', {
+            const data = {email: document.getElementById('emailReset').value}
+            fetch(`${domain.api}/account/resetpassword`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: data
+                body: JSON.stringify(data)
             }).then(res => res.json()).then(data => {
                 if (data.message == 'Vui lòng vào email để nhận lại mật khẩu')
                     ReactDOM.render(<Notify message={data.message} />, document.getElementById('notify'))

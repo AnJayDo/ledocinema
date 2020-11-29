@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import slugify from 'react-slugify'
+import domain from '../../../domain';
 
 
 class EditMovieDetail extends Component {
@@ -23,11 +24,11 @@ class EditMovieDetail extends Component {
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
         document.getElementById('footer').style.display = 'none'
-        fetch(`http://localhost:3000/movie/${this.props.match.params.movie}`)
+        fetch(`${domain.api}/movie/${this.props.match.params.movie}`)
           .then(response => response.json())
           .then(data => 
             {     
-                fetch(`http://localhost:3000/movietime/${data._id}`)
+                fetch(`${domain.api}/movietime/${data._id}`)
                 .then(response => response.json())
                 .then(res => {
                     this.setState({ movie: data, startDate: new Date(data.date?data.date.date_start:data.date_start),

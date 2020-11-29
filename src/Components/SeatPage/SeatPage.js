@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './seat.css'
 import Cookies from 'js-cookie'
+import domain from '../domain';
+import ReactDOM from 'react-dom'
+import Notify from '../Notify/Notify'
 
 let encodedToken = ""
 try {
@@ -18,10 +21,10 @@ class SeatPage extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:3000/movie/${this.props.match.params.movie}`)
+        fetch(`${domain.api}/movie/${this.props.match.params.movie}`)
             .then(response => response.json())
             .then(data => {
-                fetch(`http://localhost:3000/movietime/${data._id}`)
+                fetch(`${domain.api}/movietime/${data._id}`)
                     .then(response => response.json())
                     .then(res => {
                         const movietime = res.filter(element => element._id==this.props.match.params.movietime)[0]
@@ -42,11 +45,10 @@ class SeatPage extends Component {
         }
     }
     onClickMuaVe() {
-        if (encodedToken!=="") {
+        if (encodedToken) {
             if (this.state.chosenSeats.length > 0) {
                 const data = {numberticket: this.state.chosenSeats.length, seat: JSON.stringify(this.state.chosenSeats)}
-                console.log(data)
-                fetch(`http://localhost:3000/ticket/${this.props.match.params.movietime}/create`, {
+                fetch(`${domain.api}/ticket/${this.props.match.params.movietime}/create`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -71,8 +73,13 @@ class SeatPage extends Component {
     onClickThanhToan(key) {
         if (key == "momo") {
             ///paymentMoMo/:id
-            fetch(`http://localhost:3000/ticket/paymentMoMo/${this.state.ticketID}`).then(res => res.json()).then(data => {
-                console.log(data)
+            fetch(`${domain.api}/ticket/paymentMoMo/${this.state.ticketID}`, {
+                method: 'POST',
+                headers: {
+                    'auth-token': Cookies.get("jwt")
+                },
+            }).then(res => res.json()).then(data => {
+                window.location.href=data.link
             }).catch(e => console.log(e))
         }
     }

@@ -20,16 +20,18 @@ import SuKienAdmin from './Components/AdminPage/AdminContain/AdminSuKien/adminSu
 import EditEvent from './Components/AdminPage/AdminContain/AdminSuKien/EditEvent'
 import CreateEvent from './Components/AdminPage/AdminContain/AdminSuKien/CreateEvent'
 import ResetPassword from './Components/Others/resetPassword'
+import thongBao from './Components/UserPage/thongBao'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Cookies from 'js-cookie'
-import MessengerCustomerChat from 'react-messenger-customer-chat';
+import MessengerCustomerChat from 'react-messenger-customer-chat'
+import domain from './Components/domain'
 
 function App() {
   document.onscroll = () => {
     document.getElementById('hoverPhim').style.display = 'none'
   }
   if (window.location.pathname == "/logout") {
-    fetch('http://localhost:3000/account/logout', {
+    fetch(`${domain.api}/account/logout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,6 +59,7 @@ function App() {
             <Route path="/movies/:movie" component={MovieDetail}></Route>
             <Route path="/members" component={MemberPage}></Route>
             <Route path="/user" component={UserPage}></Route>
+            <Route path="/thongBao/:status/:message" component={thongBao}></Route>
             <Route path="/successChange" component={successChangePage}></Route>
             <Route path="/logout"></Route>
             <Route path="/resetPassword" component={ResetPassword}></Route>
