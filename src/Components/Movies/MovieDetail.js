@@ -60,7 +60,6 @@ class MovieDetail extends Component {
         else startDate = new Date(this.state.movie.date.date_start)
         let image = this.state.movie.image
         if(String(image).indexOf("http")<0) image=link+image
-        let trailer = new String(this.state.movie.trailer)
         let suatchieu = []
         let today = new Date()
         suatchieu.push(new Date("2020-02-01T17:00:00.000+00:00"))
@@ -75,6 +74,7 @@ class MovieDetail extends Component {
             return(<div className="ngayChieuPhim" id={e.toLocaleDateString()} onClick={() => this.updateTime(e.toLocaleDateString())}>{date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()}</div>)
         })
         const giochieu = this.state.chosenDate.map(gio => <div className="gioChieuPhim" id={gio._id} onClick={() => this.updateGio(gio._id)}>{gio.movietime.hour}</div>)
+	let trailer = new String(this.state.movie.trailer)
         trailer = trailer.slice(trailer.search('embed/')+6).slice(0,trailer.slice(trailer.search('embed/')+6).search('"'))
         return (
             <div className="movieDetail">

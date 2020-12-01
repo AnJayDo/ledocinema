@@ -107,22 +107,28 @@ class UserPage extends Component {
     }
 
     doiMatKhau() {
-        if(document.getElementById("matkhaumoi").value==document.getElementById("nhaplaimatkhau").value) {
-            fetch('http://localhost:3000/account/changepassword', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'auth-token': encodeToken
-                },
-                body: JSON.stringify({
-                    oldpassword: document.getElementById("matkhaucu").value,
-                    newpassword: document.getElementById("matkhaumoi").value
+        if (document.getElementById('matkhaucu').value == "" || document.getElementById('matkhaumoi').value == "" || document.getElementById('nhaplaimatkhau').value == "") {
+            ReactDOM.render(<Notify status="fail" message="Bạn vẫn chưa nhập đủ mật khẩu." />, document.getElementById('notify'))
+        }
+        else
+        {
+            if(document.getElementById("matkhaumoi").value==document.getElementById("nhaplaimatkhau").value) {
+                fetch('http://localhost:3000/account/changepassword', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'auth-token': encodeToken
+                    },
+                    body: JSON.stringify({
+                        oldpassword: document.getElementById("matkhaucu").value,
+                        newpassword: document.getElementById("matkhaumoi").value
+                    })
+                }).then(res => res.json()).then(data => {
+                    if(data.message=='Mật khẩu cũ không đúng') 
+                        window.location.href="/successChange#fail"
+                    else window.location.href="/successChange"
                 })
-            }).then(res => res.json()).then(data => {
-                if(data.message=='Mật khẩu cũ không đúng') 
-                    window.location.href="/successChange#fail"
-                else window.location.href="/successChange"
-            })
+            }
         }
     }
 
