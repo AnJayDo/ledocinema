@@ -1,1 +1,1 @@
-export default { api: 'http://localhost:3000', link: 'http://localhost', test: 'http://104.155.215.216' }
+export default { link: 'http://35.193.164.249', api: 'http://localhost:3000' }
