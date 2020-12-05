@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import Event from './EventSlide'
+import domain from '../domain'
 
 class Slideshow extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class Slideshow extends Component {
     }
     
     componentDidMount() {
-        fetch('http://localhost:3000/event/all', {method: 'GET'}).then(res => res.json())
+        fetch(`${domain.api}/event/all`, {method: 'GET'}).then(res => res.json())
           .then(data => this.setState({events:data}))
     }
 

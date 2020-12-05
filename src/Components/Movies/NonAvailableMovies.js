@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MovieCard from '../MovieCard/MovieCard'
 import './movies.css'
+import domain from '../domain'
 
 class NonAvailableMovies extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class NonAvailableMovies extends Component {
     }
     
     componentDidMount() {
-        fetch('http://localhost:3000')
+        fetch(domain.api)
           .then(response => response.json())
           .then(data => this.setState({ movies: data }))
     }

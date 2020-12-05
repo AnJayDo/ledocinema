@@ -5,6 +5,7 @@ import AdminLogin from '../../AdminLogin'
 import AdminNav from '../AdminNav'
 import './adminPhim.css'
 import MovieComponent from './MovieComponent'
+import domain from '../../../domain'
 
 
 class AdminPhimPage extends Component {
@@ -16,7 +17,7 @@ class AdminPhimPage extends Component {
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
         document.getElementById('footer').style.display = 'none'
-        fetch('http://localhost:3000')
+        fetch(domain.api)
             .then(response => response.json())
             .then(data => this.setState({ movies: data }))
     }
@@ -28,7 +29,7 @@ class AdminPhimPage extends Component {
             return (
                 <div className="adminPage">
                     <AdminNav />
-                    <div style={{maxHeight: (window.innerHeight-60)}} className="adminMainContainer">
+                    <div style={{maxHeight: (window.innerHeight-60), minHeight: (window.innerHeight-60)}} className="adminMainContainer">
                         <div className="topPhimAdmin">
                             <p className="header-text">Danh sách phim</p>
                             <a href="/administrator/phim/themphim"><div className="button">+ Thêm phim</div></a>

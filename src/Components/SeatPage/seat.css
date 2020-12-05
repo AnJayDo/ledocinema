@@ -1,85 +1,117 @@
 .seatPage {
-    display: flex;
-    width: 100%;
-    margin: 20px 0 20px 16%;
+  display: flex;
+  width: 100%;
+  margin: 20px 0 20px 16%;
 }
 
 .seats {
-    padding: 50px;
-    background-color: #f1f1f1;
-    border-radius: 20px;
-    box-shadow: inset 0 0 10px #bfbfbf;
+  padding: 50px;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  box-shadow: inset 0 0 10px #bfbfbf;
 }
 
 .rowSeat {
-    display: flex;
+  display: flex;
 }
 
 .seat {
-    background-image: url('./167947-200.png');
-    width: 60px;
-    height: 60px;
-    background-size: cover;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 40px;
-    text-align: center;
-    margin: 0 1px;
+  background-image: url("./167947-200.png");
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+  margin: 0 1px;
 }
 
 .selectedSeat {
-    background-image: url('./167947-202.png');
-    width: 60px;
-    height: 60px;
-    background-size: cover;
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-    line-height: 40px;
-    text-align: center;
-    margin: 0 1px;
+  background-image: url("./167947-202.png");
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+  margin: 0 1px;
 }
 
 .seatUnavailable {
-    background-image: url('./167947-201.png');
-    width: 60px;
-    height: 60px;
-    background-size: cover;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 40px;
-    text-align: center;
-    margin: 0 1px;
+  background-image: url("./167947-201.png");
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+  margin: 0 1px;
 }
 
 .seatContainer {
-    padding: 1px;
-    border-radius: 10px;
+  padding: 1px;
+  border-radius: 10px;
 }
 
 .movieHeadInfo {
-    display: flex;
+  display: flex;
 }
 
 .movieHeadInfo img {
-    width: inherit;    
-    max-height: 200px;
+  width: inherit;
+  max-height: 200px;
 }
 
 .phuongThucThanhToan {
-    display: none;
-    padding: 20px;
-    width: 100%;
+  display: none;
+  padding: 20px;
+  width: 100%;
 }
 
 .hinhThucThanhToan {
-    text-align: center;
-    padding: 5px 5px 9px 5px;
-    width: 70%;
-    margin: 10px;
-    border-radius: 7px;
-    font-weight: bold;
-    color: white;
+  text-align: center;
+  padding: 5px 5px 9px 5px;
+  width: 70%;
+  margin: 10px;
+  border-radius: 7px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+#stripePayment {
+  background: rgba(19, 19, 19, 0.3);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  left: 0;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+}
+
+.stripeDetail {
+  margin: 16% auto;
+  height: auto;
+  font-family: UTMAvo;
+  font-weight: bold;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: green;
+  padding: 100px 0;
+  background-color: white;
+  z-index: 50;
+  width: 50%;
+  border-radius: 20px;
 }

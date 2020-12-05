@@ -1,0 +1,31 @@
+.timeTable {
+  text-align: center;
+  height: 1700;
+}
+
+.options {
+  margin: 10px 5px;
+  border-radius: 10px;
+  padding: 5px 10px 10px 12px;
+  background-color: #f3f3f3;
+  color: #b9b9b9;
+  cursor: pointer;
+}
+
+.Selected {
+  background-color: #fff4c0;
+  color: #ffb121;
+}
+
+.deleteButton {
+  background-image: linear-gradient(to bottom right, #ffd752, #fa3838);
+  cursor: pointer;
+  width: 20%;
+  height: 20%;
+  margin-left: 80%;
+  font-size: 18px;
+  line-height: 30px;
+  padding-bottom: 3px;
+  border-radius: 10px;
+  color: white;
+}

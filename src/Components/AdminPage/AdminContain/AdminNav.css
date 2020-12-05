@@ -55,3 +55,11 @@
     display: block;
     height: 150px;
 }
+
+#timePicker div {
+    margin: 0;
+}
+
+.react-time-picker__wrapper {
+    background-color: white;
+}

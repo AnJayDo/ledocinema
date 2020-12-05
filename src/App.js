@@ -19,6 +19,7 @@ import CreateMovie from './Components/AdminPage/AdminContain/AdminPhim/CreateMov
 import SuKienAdmin from './Components/AdminPage/AdminContain/AdminSuKien/adminSuKien'
 import EditEvent from './Components/AdminPage/AdminContain/AdminSuKien/EditEvent'
 import CreateEvent from './Components/AdminPage/AdminContain/AdminSuKien/CreateEvent'
+import AdminSuatChieu from './Components/AdminPage/AdminContain/AdminSuatChieu/AdminSuatChieu'
 import ResetPassword from './Components/Others/resetPassword'
 import thongBao from './Components/UserPage/thongBao'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -70,6 +71,7 @@ function App() {
             <Route path="/administrator/sukien/themsukien" component={CreateEvent}></Route>
             <Route path="/administrator/sukien/:movie" component={EditEvent}></Route>
             <Route path="/administrator/sukien" component={SuKienAdmin}></Route>
+            <Route path="/administrator/suatchieu" component={AdminSuatChieu}></Route>
             <Route path="*" component={ErrorPage}></Route>
           </Switch>
         </div>

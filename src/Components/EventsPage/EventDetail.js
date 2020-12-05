@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import SideMoviesList from '../SideMoviesList/SideMoviesList'
 import './EventsPage.css'
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
+import domain from '../domain'
 
 class Event extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class Event extends Component {
     }
     
     componentDidMount() {
-        let url = `http://localhost:3000/event/${this.props.match.params.event}`
+        let url = `${domain.api}/event/${this.props.match.params.event}`
         fetch(url)
           .then(response => response.json())
           .then(data => this.setState({eventDetail: data, startDate: new Date(data.date.date_start), endDate: new Date(data.date.date_end)}))
@@ -29,7 +30,7 @@ class Event extends Component {
                         <div className="eventDetail">
                             <div className="eventDetailHead">
                                 <div>
-                                    <a href={`/events/${this.state.eventDetail.slug}`}><img src={image.indexOf("http")<0?("http://localhost:3000/"+this.state.eventDetail.image).replaceAll('\\','/'):this.state.eventDetail.image} /></a>
+                                    <a href={`/events/${this.state.eventDetail.slug}`}><img src={image.indexOf("http")<0?(domain.api+"/"+this.state.eventDetail.image).replaceAll('\\','/'):this.state.eventDetail.image} /></a>
                                 </div>
                                 <div className="eventCardText">
                                     <h3 className="eventName">{this.state.eventDetail.name}</h3>

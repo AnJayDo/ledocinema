@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import domain from '../domain'
 
 class Event extends Component {
     render() {
-        const image = this.props.event.image
+        let image = this.props.event.image
+        if(String(image).indexOf("http")<0) image=domain.api+"/"+image
         let startDate = new Date(this.props.event.date.date_start)
         let endDate = new Date(this.props.event.date.date_end)
         return (
             <div className="eventCard">
                 <div>
-                    <a href={`/events/${this.props.event.slug}`}><img src={image.indexOf("http")<0?("http://localhost:3000/"+this.props.event.image).replaceAll('\\','/'):this.props.event.image} /></a>
+                    <a href={`/events/${this.props.event.slug}`}><img src={image} /></a>
                 </div>
                 <div className="eventCardText">
                     <a href={`/events/${this.props.event.slug}`}><h3>{this.props.event.name}</h3></a>

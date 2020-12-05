@@ -51,8 +51,6 @@ class EditMovieDetail extends Component {
 
     onClickEditButton() {
         const formData = new FormData()
-        let startDate = this.state.date
-        startDate=`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`
         if(this.state.image.toString()!=="[object Object]")
             formData.append('image', this.state.image, this.state.image.name)
         formData.append('name', document.getElementById("movieName").value == "" ? this.state.movie.name : document.getElementById("movieName").value)

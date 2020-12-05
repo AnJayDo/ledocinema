@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie'
 import './LoginButton.css'
+import domain from '../domain'
 
 const encodeToken = Cookies.get('jwt')
-const link = "http://localhost:3000/"
 
 class LoginButton extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class LoginButton extends Component {
     componentDidMount() {
         try {
             if(encodeToken){
-                fetch('http://localhost:3000/account/me', {
+                fetch(`${domain.api}/account/me`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ class LoginButton extends Component {
         document.getElementById('signUp').style.display = "inline"
     }
     logoutClick = () => {
-        fetch('http://localhost:3000/account/logout', {
+        fetch(`${domain.api}/account/logout`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ class LoginButton extends Component {
         const {data} = this.state
         if(data.name) {
             let image = this.state.data.avartar
-            if(String(image).indexOf("http")<0) image=link+image
+            if(String(image).indexOf("http")<0) image=domain.api+"/"+image
             return (
                 <div id="userButton">
                     <a id="userHi" href="/user"><img style={{ borderRadius: '15px', height: '30px', width: '30px', padding: '3px' }} src={image} /><p style={{ margin: '3px' }}>{"Chào " + String(data.name).slice(String(data.name).lastIndexOf(" ") + 1)}</p></a>

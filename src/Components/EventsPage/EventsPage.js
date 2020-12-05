@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SideMoviesList from '../SideMoviesList/SideMoviesList'
 import './EventsPage.css'
 import Event from './Event'
+import domain from '../domain'
 
 class EventsPage extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class EventsPage extends Component {
     }
     
     componentDidMount() {
-        fetch('http://localhost:3000/event/all', {method: 'GET'}).then(res => res.json())
+        fetch(`${domain.api}/event/all`, {method: 'GET'}).then(res => res.json())
           .then(data => this.setState({events:data}))
     }
 

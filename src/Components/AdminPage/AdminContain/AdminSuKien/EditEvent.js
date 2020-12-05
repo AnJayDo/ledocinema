@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import ReactQuill from 'react-quill'
 import slugify from 'react-slugify'
 import 'react-quill/dist/quill.snow.css'
+import domain from '../../../domain'
 
 class EditEvent extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class EditEvent extends Component {
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
         document.getElementById('footer').style.display = 'none'
-        fetch(`http://localhost:3000/event/${this.props.match.params.movie}`)
+        fetch(`${domain.api}/event/${this.props.match.params.movie}`)
           .then(response => response.json())
           .then(data => 
             {   
@@ -51,7 +52,7 @@ class EditEvent extends Component {
         formData.append('discription', this.state.text)
         formData.append('date', {date_start: startDate, date_end: null})
         formData.append('slug', document.getElementById("eventName").value==""?this.state.event.slug:slugify(document.getElementById("eventName").value))
-        fetch(`http://localhost:3000/event/${this.state.event._id}`, {
+        fetch(`${domain.api}/event/${this.state.event._id}`, {
             method: 'PUT',
             body: formData
         }).then(res => {  

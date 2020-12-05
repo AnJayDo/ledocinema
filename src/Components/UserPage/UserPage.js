@@ -15,7 +15,7 @@ import Paper from '@material-ui/core/Paper';
 
 
 const encodeToken = Cookies.get('jwt')
-const link = "http://localhost:3000/"
+const link = domain.api
 
 class UserPage extends Component {
     constructor(props) {
@@ -41,7 +41,7 @@ class UserPage extends Component {
                 body: formData
             }).then(res => res.json()).then(data => {
                 if(data.message=="Đã cập nhập ảnh đại diện") {
-                    this.setState({ data: this.state.data, history: this.state.history , image:link+"src/resoures/"+files[0].name})
+                    this.setState({ data: this.state.data, history: this.state.history , image:link+"/src/resoures/"+files[0].name})
                     ReactDOM.render(<Notify message={data.message} />, document.getElementById('notify'))
                 }
             }).catch(e => console.log(e))
@@ -65,7 +65,7 @@ class UserPage extends Component {
                 }
             }).then(res => res.json()).then(res => {
                 let image = data.avartar
-                if(String(image).indexOf("http")<0) image=link+image
+                if(String(image).indexOf("http")<0) image=link+"/"+image
                 let rows = res.slice(res.length-10).reverse()
                 this.setState({ data: data, history: rows, image: image })
                 console.log(this.state)
@@ -113,7 +113,7 @@ class UserPage extends Component {
         else
         {
             if(document.getElementById("matkhaumoi").value==document.getElementById("nhaplaimatkhau").value) {
-                fetch('http://localhost:3000/account/changepassword', {
+                fetch(`${domain.api}/account/changepassword`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

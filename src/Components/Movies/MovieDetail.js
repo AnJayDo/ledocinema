@@ -4,8 +4,8 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 import './movies.css'
 import TomatoesImage from '../../Images/RottenTomatoes.png'
 import StarImage from '../../Images/Star.png'
+import domain from '../domain';
 
-const link = "http://localhost:3000/"
 
 class MovieDetail extends Component {
     constructor(props) {
@@ -15,14 +15,18 @@ class MovieDetail extends Component {
     }
     
     componentDidMount() {
-        fetch(`http://localhost:3000/movie/${this.props.match.params.movie}`)
+        fetch(`${domain.api}/movie/${this.props.match.params.movie}`)
           .then(response => response.json())
           .then(data => 
             {     
-                fetch(`http://localhost:3000/movietime/${data._id}`)
+                fetch(`${domain.api}/movietime/${data._id}`)
                 .then(response => response.json())
                 .then(res => {
-                    this.setState({ movie: data, movietimes:res, times: res, chosenDate: res})
+                    this.setState({ movie: data, 
+                        movietimes:res, 
+                        times: res, 
+                        chosenDate: res.filter(mvt => (new Date(mvt.movietime.date)).toLocaleDateString()==(new Date()).toLocaleDateString())
+                    })
                 })
             })
     }
@@ -59,10 +63,9 @@ class MovieDetail extends Component {
             startDate = new Date(this.state.movie.date_start)
         else startDate = new Date(this.state.movie.date.date_start)
         let image = this.state.movie.image
-        if(String(image).indexOf("http")<0) image=link+image
+        if(String(image).indexOf("http")<0) image=domain.api+"/"+image
         let suatchieu = []
         let today = new Date()
-        suatchieu.push(new Date("2020-02-01T17:00:00.000+00:00"))
         suatchieu.push(today)
         if(today.getDay()>0) {
             for(let i=today.getDay(); i<7; i++) {

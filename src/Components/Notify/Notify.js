@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import './Notify.css'
+import domain from '../domain'
 
-const link = `http://localhost:3000`
+const link = domain.api
 
 function Notify(props) {
     let removeNotify = () => {

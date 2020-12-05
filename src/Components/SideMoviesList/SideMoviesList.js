@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import domain from '../domain';
 import MovieCard from '../MovieCard/MovieCard'
 import './SideMovieList.css'
 
@@ -9,13 +10,13 @@ class SideMoviesList extends Component {
     }
     
     componentDidMount() {
-        fetch('http://localhost:3000')
+        fetch(domain.api)
           .then(response => response.json())
           .then(data => this.setState({ movies: data }))
     }
 
     render() {
-        const movies = this.state.movies.slice(0,3).map(movie => <MovieCard movie={movie} />)
+        const movies = this.state.movies.filter(e=> e.playing==true).slice(0,3).map(movie => <MovieCard movie={movie} />)
         return (
             <div style={{width: "20%", marginTop: '40px'}}>
                 <div>

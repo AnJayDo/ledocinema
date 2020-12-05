@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Toggle from 'react-toggle'
 import "react-toggle/style.css"
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import domain from '../../../domain'
 
 class EventComponent extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class EventComponent extends Component {
     }
 
     onChangeDangChieu(id) {
-        fetch(`http://localhost:3000/movie/${id}/dangchieu`, {
+        fetch(`${domain.api}/movie/${id}/dangchieu`, {
             method: 'PUT'
         })
             .then(response => response.json())
@@ -23,7 +24,7 @@ class EventComponent extends Component {
     }
 
     onChangeSapChieu(id) {
-        fetch(`http://localhost:3000/movie/${id}/sapchieu`, {
+        fetch(`${domain.api}/movie/${id}/sapchieu`, {
             method: 'PUT'
         })
             .then(response => response.json())
@@ -34,7 +35,7 @@ class EventComponent extends Component {
     }
 
     onClickDelete(id) {
-        fetch(`http://localhost:3000/event/${id}`, {
+        fetch(`${domain.api}/event/${id}`, {
             method: 'DELETE'
         })
             .then(response => response.json())
@@ -51,7 +52,7 @@ class EventComponent extends Component {
         const image = this.props.event.image?this.props.event.image:" "
         return (
             <div className="movieComponent">
-                <a href={`/administrator/sukien/${this.props.event.slug}`}><img className="movieImage" src={image.indexOf("http")<0?("http://localhost:3000/"+this.props.event.image).replaceAll('\\','/'):this.props.event.image} /></a>
+                <a href={`/administrator/sukien/${this.props.event.slug}`}><img className="movieImage" src={image.indexOf("http")<0?(domain.api+"/"+this.props.event.image).replaceAll('\\','/'):this.props.event.image} /></a>
                 <div className="movieInfo">
                     <h2><a className="movieName" href={`/administrator/sukien/${this.props.event.slug}`}>{this.props.event.name}</a></h2>
                     <p className="shortDes"><b>Nội dung: </b>{ReactHtmlParser(this.props.event.discription)}</p>
