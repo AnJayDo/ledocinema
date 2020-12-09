@@ -28,7 +28,7 @@ class AdminSuKien extends Component {
             return (
                 <div className="adminPage">
                     <AdminNav />
-                    <div style={{maxHeight: (window.innerHeight-60), minHeight: (window.innerHeight-60)}} className="adminMainContainer">
+                    <div style={{maxHeight: (window.innerHeight-60), minHeight: '100vh'}} className="adminMainContainer">
                         <div className="topPhimAdmin">
                             <p className="header-text">Danh sách sự kiện</p>
                             <a href="/administrator/sukien/themsukien"><div className="button">+ Thêm sự kiện</div></a>

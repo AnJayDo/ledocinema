@@ -16,7 +16,7 @@ class AdminNav extends Component {
     }
 
     render() {
-        return(<div style={{maxHeight: (window.innerHeight-60)}} className="adminNav">
+        return(<div style={{maxHeight: '100vh'}} className="adminNav">
             <a id="logoToClick" href="/"><img id="logo" src={logo}/></a>
             <ul>
                 <li id="homeAd"><i class="fas fa-home"></i><a href="/administrator">Tổng quan</a></li>

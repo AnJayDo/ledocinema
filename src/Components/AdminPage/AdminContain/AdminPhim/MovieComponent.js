@@ -47,10 +47,12 @@ class MovieComponent extends Component {
         if(!this.props.movie.date) 
             startDate = new Date(this.props.movie.date_start)
         else startDate = new Date(this.props.movie.date.date_start)
-        const image = this.props.movie.image?this.props.movie.image:" "
+        let image = this.props.movie.image?this.props.movie.image:""
+        if(image.indexOf("http")<0)
+            image=(domain.api+"/"+this.props.movie.image).replaceAll('\\','/')
         return (
             <div className="movieComponent">
-                <a href={`/administrator/phim/${this.props.movie.slug}`}><img className="movieImage" src={image.indexOf("http")<0?("http://localhost:3000/"+this.props.movie.image).replaceAll('\\','/'):this.props.movie.image} /></a>
+                <a href={`/administrator/phim/${this.props.movie.slug}`}><img className="movieImage" src={image} /></a>
                 <div className="movieInfo">
                     <h2><a className="movieName" href={`/administrator/phim/${this.props.movie.slug}`}>{this.props.movie.name}</a></h2>
                     <p><b>Đạo diễn: </b>{this.props.movie.director}</p>

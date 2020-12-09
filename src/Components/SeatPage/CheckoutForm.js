@@ -171,7 +171,7 @@ const CheckoutForm = () => {
           label="Họ tên"
           id="name"
           type="text"
-          placeholder="Jane Doe"
+          placeholder="Nguyễn Văn A"
           required
           autoComplete="name"
           value={billingDetails.name}
@@ -183,7 +183,7 @@ const CheckoutForm = () => {
           label="Email"
           id="email"
           type="email"
-          placeholder="janedoe@gmail.com"
+          placeholder="nguyenvana@gmail.com"
           required
           autoComplete="email"
           value={billingDetails.email}

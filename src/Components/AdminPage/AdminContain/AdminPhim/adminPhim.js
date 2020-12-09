@@ -29,7 +29,7 @@ class AdminPhimPage extends Component {
             return (
                 <div className="adminPage">
                     <AdminNav />
-                    <div style={{maxHeight: (window.innerHeight-60), minHeight: (window.innerHeight-60)}} className="adminMainContainer">
+                    <div style={{maxHeight: (window.innerHeight-60), minHeight: '100vh'}} className="adminMainContainer">
                         <div className="topPhimAdmin">
                             <p className="header-text">Danh sách phim</p>
                             <a href="/administrator/phim/themphim"><div className="button">+ Thêm phim</div></a>

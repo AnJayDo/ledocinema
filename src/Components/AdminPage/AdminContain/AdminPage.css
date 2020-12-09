@@ -11,6 +11,7 @@
   overflow-y: scroll;
   background-color: #f7f7f7;
   padding: 20px;
+  min-height: 100vh;
 }
 
 .adminMainContainer::-webkit-scrollbar {

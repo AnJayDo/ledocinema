@@ -72,6 +72,7 @@ class SeatPage extends Component {
                     },
                     body: JSON.stringify(data)
                 }).then(res => res.json()).then(data => {
+                    console.log(data)
                     if (data._id) {
                         this.setState({ticketID: data._id})
                         document.getElementById("buttonThanhToan").style.display = "none"
@@ -95,6 +96,7 @@ class SeatPage extends Component {
                     'auth-token': Cookies.get("jwt")
                 },
             }).then(res => res.json()).then(data => {
+                console.log(data)
                 window.location.href=data.link
             }).catch(e => console.log(e))
         }
@@ -150,7 +152,7 @@ class SeatPage extends Component {
                     <div>
 
                     </div>
-                    <div className="phuongThucThanhToan" style={{display: 'block'}} id="phuongThucThanhToan">
+                    <div className="phuongThucThanhToan" style={{display: 'none'}} id="phuongThucThanhToan">
                         <a><div style={{ backgroundColor: "#ae2070" }} onClick={() => this.onClickThanhToan("momo")} class="hinhThucThanhToan">Thanh toán bằng ví Momo</div></a>
                         <a><div style={{ backgroundColor: "#1492fd" }} onClick={() => this.onClickThanhToan("airpay")} class="hinhThucThanhToan">Thanh toán bằng AirPay</div></a>
                         <a><div style={{ backgroundColor: "#6772e5" }} onClick={() => this.onClickThanhToan("stripe")} class="hinhThucThanhToan">Thanh toán bằng thẻ</div></a>

@@ -16,9 +16,10 @@ class EditEvent extends Component {
         super(props)
         this.onClickSuaSuKien = this.onClickSuaSuKien.bind(this)
         this.handleChangeText = this.handleChangeText.bind(this)
+        this.onChangeImage = this.onChangeImage.bind(this)
     }
 
-    state = { event: {}, date: new Date() , image: {}, text: ""}
+    state = { event: {}, date: new Date() , image: {}, cover_image: {}, text: ""}
 
     componentDidMount() {
         document.getElementById('navbar').style.display = 'none'
@@ -27,30 +28,26 @@ class EditEvent extends Component {
           .then(response => response.json())
           .then(data => 
             {   
-                this.setState({ event: data, date: data.date?new Date(data.date.date_start):new Date(), image: {}, text: data.discription?data.discription:""})
+                this.setState({ event: data, date: data.date?new Date(data.date.date_start):new Date(data.date_start), image: {}, text: data.discription?data.discription:""})
             })
     }
 
     onChangeImage(element) {
-        let files = element.target.files
-        let reader = new FileReader()
-        reader.readAsDataURL(files[0])
-        reader.onload = (element) => {
-            console.warn(element.target.result)
-            console.log(files[0])
-            this.setState({ event: this.state.event, date: this.state.date , image: files[0], text: this.state.text})
-        }
+        this.setState({ image: element.target.files[0], cover_image: element.target.files[1] })
     }
 
     onClickSuaSuKien() {
         const formData = new FormData()
         let startDate = this.state.date
         startDate=`${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`
-        if(this.state.image.toString()!=="[object Object]")
+        if(this.state.image.toString()!=="[object Object]") {
+            formData.append('image', this.state.cover_image, this.state.cover_image.name)
             formData.append('image', this.state.image, this.state.image.name)
+        }
         formData.append('name', document.getElementById("eventName").value==""?this.state.event.name:document.getElementById("eventName").value)
         formData.append('discription', this.state.text)
-        formData.append('date', {date_start: startDate, date_end: null})
+        formData.append('date_start', this.state.date.toJSON())
+        formData.append('date_end', this.state.date.toJSON())
         formData.append('slug', document.getElementById("eventName").value==""?this.state.event.slug:slugify(document.getElementById("eventName").value))
         fetch(`${domain.api}/event/${this.state.event._id}`, {
             method: 'PUT',
@@ -61,7 +58,7 @@ class EditEvent extends Component {
     }
 
     handleChangeText = (value) => {
-        this.setState({ event: this.state.event, date: this.state.date , image: this.state.image, text: value })
+        this.setState({ text: value })
     }
 
     render() {
@@ -78,7 +75,7 @@ class EditEvent extends Component {
                             <form className="formEdit">
                                 <div>
                                     <label for="image"><b>Hình:</b></label>
-                                    <input type="file" name="image" id="image" onChange={(element) => this.onChangeImage(element)} required></input>
+                                    <input type="file" multiple name="image" id="image" onChange={(element) => this.onChangeImage(element)} required></input>
                                 </div>
                                 <div>
                                     <label for="eventName"><b>Tên sự kiện:</b></label>

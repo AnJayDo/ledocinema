@@ -43,7 +43,7 @@ class AdminPage extends Component {
         if(Cookies.get('admin')=="admin" && Cookies.get('passwordAd')=="admin")
         return(<div className="adminPage">
             <AdminNav />
-            <div style={{ maxHeight: (window.innerHeight - 60), minHeight: (window.innerHeight - 60)}} className="adminMainContainer">
+            <div style={{ maxHeight: (window.innerHeight - 60), minHeight: '100vh'}} className="adminMainContainer">
                 <h3 className="header-text">TRANG CHỦ</h3>
                 <div style={{display: "flex"}}>
                     <div className="infoCard">

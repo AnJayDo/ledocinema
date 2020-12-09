@@ -6,8 +6,12 @@ class Event extends Component {
     render() {
         let image = this.props.event.image
         if(String(image).indexOf("http")<0) image=domain.api+"/"+image
-        let startDate = new Date(this.props.event.date.date_start)
-        let endDate = new Date(this.props.event.date.date_end)
+        let startDate = new Date()
+        let endDate = new Date()
+        if(this.props.event.date) {
+            startDate = new Date(this.props.event.date.date_start)
+            endDate = new Date(this.props.event.date.date_end)
+        }
         return (
             <div className="eventCard">
                 <div>

@@ -267,7 +267,6 @@ class SignUpLogin extends Component {
                 })
             })
                 .then(res => res.json()).then(data => {
-                    console.log(data)
                     if (data.message == "login succes") {
                         Cookies.set('jwt', data.token, { expires: 30 })
                         window.location.reload()

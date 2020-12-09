@@ -38,7 +38,7 @@ class ResetPassword extends Component {
                     <div style={{ width: "100%", marginBottom: '280px' }} className="thongtinchitiet">
                         <form>
                             <div id="khongtrungkhop">Mật khẩu mới và mật khẩu nhập lại không trùng khớp</div>
-                            <div className="thongtin" style={{ textAlign: 'center' }}><b>Email:</b> <input style={{ width: '70%' }} type="text" id="emailReset" /></div>
+                            <div className="thongtin" style={{ textAlign: 'center' }}><b>Email:</b> <input style={{ width: '70%', border: '2.5px solid black', borderRadius: 10 }} type="text" id="emailReset" /></div>
                         </form>
                         <div style={{ marginLeft: "70%" }} onClick={this.layLaiMatKhau} className="button">Đổi mật khẩu</div>
                     </div>

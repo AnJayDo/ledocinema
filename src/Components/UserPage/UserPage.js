@@ -163,7 +163,7 @@ class UserPage extends Component {
                         <div className="thongtin"><b>Email:</b> {this.state.data.email}</div>
                         <div className="thongtin"><b>Ngày sinh:</b> {this.state.data.birthday ? this.state.data.birthday : "01/01/2000"}</div>
                         <div className="thongtin"><b>Số điện thoại:</b> {this.state.data.phone ? this.state.data.phone : "09*********07"}</div>
-                        <div style={{ marginLeft: "60%" }} className="button">Sửa thông tin</div>
+                        {/* <div style={{ marginLeft: "60%" }} className="button">Sửa thông tin</div> */}
                     </div>
                     {/* </form> */}
                 </div>

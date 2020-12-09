@@ -31,8 +31,15 @@ class EditMovieDetail extends Component {
                 fetch(`${domain.api}/movietime/${data._id}`)
                 .then(response => response.json())
                 .then(res => {
-                    this.setState({ movie: data, startDate: new Date(data.date?data.date.date_start:data.date_start),
-                        endDate: new Date(data.date?data.date.date_end:null), movietimes:res, times: res[0]?res[0].movietime.times:[], text: data.decription})
+                    if (data.date)
+                        this.setState({
+                            movie: data, startDate: new Date(data.date.date_start),
+                            endDate: new Date(data.date.date_end), movietimes: res, times: res[0] ? res[0].movietime.times : [], text: data.decription
+                        })
+                    else this.setState({
+                        movie: data, startDate: new Date(data.date_start),
+                        endDate: new Date(), movietimes: res, times: res[0] ? res[0].movietime.times : [], text: data.decription
+                    })
                 })
             })
     }
@@ -44,7 +51,6 @@ class EditMovieDetail extends Component {
         reader.readAsDataURL(files[0])
         reader.onload = (element) => {
             console.warn(element.target.result)
-            console.log(files[0])
             this.setState({image: files[0]})
         }
     }
@@ -61,10 +67,10 @@ class EditMovieDetail extends Component {
         formData.append('length', document.getElementById("length").value == "" ? this.state.movie.length : document.getElementById("length").value)
         formData.append('language', document.getElementById("language").value == "" ? this.state.movie.language : document.getElementById("language").value)
         formData.append('rating', document.getElementById("rating").value == "" ? this.state.movie.rating : document.getElementById("rating").value)
-        formData.append('start_date', this.state.startDate.toJSON())
-        formData.append('end_date', this.state.endDate.toJSON())
+        formData.append('date_start', this.state.startDate.toJSON())
+        formData.append('date_end', this.state.endDate.toJSON())
         formData.append('slug', document.getElementById("movieName").value == "" ? this.state.movie.slug : slugify(document.getElementById("movieName").value))
-        fetch(`http://localhost:3000/movie/${this.state.movie._id}`, {
+        fetch(`${domain.api}/movie/${this.state.movie._id}`, {
             method: 'PUT',
             body: formData
         })
