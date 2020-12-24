@@ -8,7 +8,7 @@ const encodeToken = Cookies.get('jwt')
 class LoginButton extends Component {
     constructor(props) {
         super(props)
-        this.state={data: {}};
+        this.state={data: {name: ""}};
     }
     componentDidMount() {
         try {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import './LandingPage.css'
 import moveek from '../../Images/moveek.png'
 import premiumCinema from '../../Images/premiumCinema.png'
@@ -14,12 +15,22 @@ import AvailableMovies from '../Movies/AvailableMovies'
 import NonAvailableMovies from '../Movies/NonAvailableMovies'
 import SlideshowEvents from './SlideshowEvents'
 import AvailableEvents from './AvailableEvents'
+import Notify from '../Notify/Notify'
 
 
 class LandingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {movies: <AvailableMovies />}
+    }
+    componentDidMount() {
+        if(window.location.hash=='#success') {
+            ReactDOM.render(<Notify status="success" message="Thanh toán thành công" />, document.getElementById('notify'))
+        } else {
+            if(window.location.hash=='#fail') {
+                ReactDOM.render(<Notify status="fail" message="Thanh toán thất bại" />, document.getElementById('notify'))
+            }
+        }
     }
     clickAvailableMovies = () => {
         document.getElementById("phimDangChieu").className="header-text"

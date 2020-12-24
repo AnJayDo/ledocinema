@@ -53,6 +53,7 @@ const responseFacebook = (response) => {
                             Cookies.set('jwt', data.token, { expires: 30 })
                             window.location.reload()
                         }
+                        else ReactDOM.render(<Notify status="fail" message={data.message} />, document.getElementById('notify'))
                     }).catch(e => console.log(e))
             }
             else if (data.message == "email đã đc sử dụng đăng kí cho tk khác") {
@@ -78,6 +79,7 @@ const responseFacebook = (response) => {
                             Cookies.set('jwt', data.token, { expires: 30 })
                             window.location.reload()
                         }
+                        else ReactDOM.render(<Notify status="fail" message={data.message} />, document.getElementById('notify'))
                     }).catch(e => console.log(e))
             }
         }).catch(e => console.log(e))

@@ -9,6 +9,10 @@
     height: 500px;
 }
 
+.react-slideshow-container {
+    min-height: 500px;
+}
+
 .slide-container {
     height: 100%;
 }

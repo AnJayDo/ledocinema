@@ -74,7 +74,7 @@ class EditMovieDetail extends Component {
             method: 'PUT',
             body: formData
         })
-            .then(res => { if (res.message == 'Đã cập nhập') window.location.href = window.location.origin + "/administrator/phim" })
+            .then(res => { window.location.href = window.location.origin + "/administrator/phim" })
     }
 
     handleChangeText = (value) => {

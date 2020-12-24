@@ -124,7 +124,8 @@ class SeatPage extends Component {
                 else return (<div class="seatContainer"><div className="seatUnavailable">{column.id}</div></div>)
             })}</div>)
         const startDate = new Date(this.state.movie.date_start)
-        const img = this.state.movie.image
+        let img = this.state.movie.image
+        if(String(img).indexOf("http")<0) img=domain.api+"/"+String(img).replace("\\","/")
         let ngayChieuPhim = new Date(this.state.date)
         return (
             <div className="seatPage">
